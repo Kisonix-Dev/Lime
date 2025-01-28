@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v9.0": {
-      "CodeNpp/1.0.0": {
+      "Lime/1.0.0": {
         "runtime": {
-          "CodeNpp.dll": {}
+          "Lime.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "CodeNpp/1.0.0": {
+    "Lime/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

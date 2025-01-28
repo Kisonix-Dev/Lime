@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/user/github/CodeNpp/CodeNpp.csproj",
-      "projectName": "CodeNpp",
-      "projectPath": "/home/user/github/CodeNpp/CodeNpp.csproj",
+      "projectUniqueName": "/home/user/github/Lime/Lime.csproj",
+      "projectName": "Lime",
+      "projectPath": "/home/user/github/Lime/Lime.csproj",
       "packagesPath": "/home/user/.nuget/packages/",
-      "outputPath": "/home/user/github/CodeNpp/obj/",
+      "outputPath": "/home/user/github/Lime/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/user/.nuget/NuGet/NuGet.Config"

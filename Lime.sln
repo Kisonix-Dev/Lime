@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeNpp", "CodeNpp.csproj", "{2891D7F1-F718-5BE4-1EC6-B02913209560}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lime", "Lime.csproj", "{46301F20-C37E-8AA6-E07F-3A01E4426C4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,15 +10,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2891D7F1-F718-5BE4-1EC6-B02913209560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2891D7F1-F718-5BE4-1EC6-B02913209560}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2891D7F1-F718-5BE4-1EC6-B02913209560}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2891D7F1-F718-5BE4-1EC6-B02913209560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46301F20-C37E-8AA6-E07F-3A01E4426C4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46301F20-C37E-8AA6-E07F-3A01E4426C4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46301F20-C37E-8AA6-E07F-3A01E4426C4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46301F20-C37E-8AA6-E07F-3A01E4426C4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3ACEFD24-8393-4DCF-AC77-5D5B1A857422}
+		SolutionGuid = {A1517E06-0753-4159-A1AF-262E5A0F7C0C}
 	EndGlobalSection
 EndGlobal

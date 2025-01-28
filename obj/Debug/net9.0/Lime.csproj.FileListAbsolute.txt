@@ -1,0 +1,15 @@
+/home/user/github/Lime/bin/Debug/net9.0/Lime
+/home/user/github/Lime/bin/Debug/net9.0/Lime.deps.json
+/home/user/github/Lime/bin/Debug/net9.0/Lime.runtimeconfig.json
+/home/user/github/Lime/bin/Debug/net9.0/Lime.dll
+/home/user/github/Lime/bin/Debug/net9.0/Lime.pdb
+/home/user/github/Lime/obj/Debug/net9.0/Lime.GeneratedMSBuildEditorConfig.editorconfig
+/home/user/github/Lime/obj/Debug/net9.0/Lime.AssemblyInfoInputs.cache
+/home/user/github/Lime/obj/Debug/net9.0/Lime.AssemblyInfo.cs
+/home/user/github/Lime/obj/Debug/net9.0/Lime.csproj.CoreCompileInputs.cache
+/home/user/github/Lime/obj/Debug/net9.0/Lime.sourcelink.json
+/home/user/github/Lime/obj/Debug/net9.0/Lime.dll
+/home/user/github/Lime/obj/Debug/net9.0/refint/Lime.dll
+/home/user/github/Lime/obj/Debug/net9.0/Lime.pdb
+/home/user/github/Lime/obj/Debug/net9.0/Lime.genruntimeconfig.cache
+/home/user/github/Lime/obj/Debug/net9.0/ref/Lime.dll
