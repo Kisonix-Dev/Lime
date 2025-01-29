@@ -6,8 +6,9 @@ namespace Lime
   {
     static void Main()
     {
-      Boot objb = new Boot()!;
-      objb.Function_boot_system();
+      Boot func = new Boot()!;
+      func.Function_boot_system();
+      Login.LoginUser();
     }
   }
 }
