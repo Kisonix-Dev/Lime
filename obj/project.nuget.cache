@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "KE5OW9mnSdM=",
+  "dgSpecHash": "slM5nVyueV8=",
   "success": true,
   "projectFilePath": "/home/user/github/Lime/Lime.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/user/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

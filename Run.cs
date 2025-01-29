@@ -8,7 +8,8 @@ namespace Lime
     {
       Boot func = new Boot()!;
       func.Function_boot_system();
-      Login.LoginUser();
+      //Добавить проверку на созданную учётную запись. 
+      Register.RegistrationUser();
     }
   }
 }

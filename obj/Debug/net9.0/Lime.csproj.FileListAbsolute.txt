@@ -13,3 +13,6 @@
 /home/user/github/Lime/obj/Debug/net9.0/Lime.pdb
 /home/user/github/Lime/obj/Debug/net9.0/Lime.genruntimeconfig.cache
 /home/user/github/Lime/obj/Debug/net9.0/ref/Lime.dll
+/home/user/github/Lime/bin/Debug/net9.0/Newtonsoft.Json.dll
+/home/user/github/Lime/obj/Debug/net9.0/Lime.csproj.AssemblyReference.cache
+/home/user/github/Lime/obj/Debug/net9.0/Lime.csproj.Up2Date
