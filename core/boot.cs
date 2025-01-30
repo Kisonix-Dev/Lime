@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using Lime.colors;
 namespace Lime.core
 {
   class Boot
@@ -8,7 +9,7 @@ namespace Lime.core
     {
       Console.Clear();
       int totalSteps = 50;
-      Console.ForegroundColor = ConsoleColor.Green;
+      Colors.Green();
       Console.WriteLine($"Загрузка LIME");
       Console.ResetColor();
       Console.WriteLine();
@@ -16,7 +17,7 @@ namespace Lime.core
 
       for (int i = 0; i <= totalSteps; i++)
       {
-        Console.ForegroundColor = ConsoleColor.White;
+        Colors.White();
         Console.ResetColor();
 
         int percent = (i * 100) / totalSteps;
