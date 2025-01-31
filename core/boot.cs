@@ -9,9 +9,7 @@ namespace Lime.core
     {
       Console.Clear();
       int totalSteps = 50;
-      Colors.Green();
-      Console.WriteLine($"Загрузка LIME");
-      Console.ResetColor();
+      Logo.PrintLogo();
       Console.WriteLine();
       Console.Write($"[");
 

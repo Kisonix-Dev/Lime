@@ -1,5 +1,8 @@
 using System;
 using Newtonsoft.Json;
+using System.Security.Cryptography;
+using System.Text;
+using System.Collections.Generic;
 namespace Lime.core
 {
   public static class AuthenticationAccount
@@ -22,7 +25,9 @@ namespace Lime.core
         Console.Write($"Введите пароль: ");
         Console.ResetColor();
         string password = Console.ReadLine()!;
-        var user = users.Find(u => u.Username == username && u.Password == password);
+
+        string hashedPassword = HashPassword(password);
+        var user = users.Find(u => u.Username == username && u.Password == hashedPassword);
         if (user != null)
         {
           Console.Clear();
@@ -49,6 +54,19 @@ namespace Lime.core
         return JsonConvert.DeserializeObject<List<User>>(json) ?? new List<User>()!;
       }
       return new List<User>()!;
+    }
+    private static string HashPassword(string password)
+    {
+      using (var sha256 = SHA256.Create())
+      {
+        byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+        StringBuilder builder = new StringBuilder()!;
+        foreach (var b in bytes)
+        {
+          builder.Append(b.ToString("x2"));
+        }
+        return builder.ToString();
+      }
     }
   }
 }
