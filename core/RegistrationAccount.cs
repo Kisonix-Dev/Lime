@@ -1,4 +1,5 @@
 using System;
+using Lime.colors;
 using Newtonsoft.Json;
 using System.Threading;
 using System.Security.Cryptography;
@@ -16,17 +17,17 @@ namespace Lime.core
     public static void Register(string filePath)
     {
       Console.Clear();
-      Console.ForegroundColor = ConsoleColor.Yellow;
+      Colors.Yellow();
       Console.WriteLine($"Создание учётной записи пользователя");
       Console.ResetColor();
       Console.WriteLine();
 
-      Console.ForegroundColor = ConsoleColor.Blue;
+      Colors.Blue();
       Console.Write($"Введите имя: ");
       Console.ResetColor();
       string username = Console.ReadLine()!;
 
-      Console.ForegroundColor = ConsoleColor.Blue;
+      Colors.Blue();
       Console.Write($"Введите пароль: ");
       Console.ResetColor();
       string password = Console.ReadLine()!;
@@ -39,7 +40,7 @@ namespace Lime.core
       File.WriteAllText(filePath, JsonConvert.SerializeObject(users, Formatting.Indented));
 
       Console.Clear();
-      Console.ForegroundColor = ConsoleColor.Green;
+      Colors.Green();
       Console.WriteLine($"Учётная запись создана.");
       Console.ResetColor();
       Thread.Sleep(1700);

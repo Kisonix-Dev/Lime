@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using Lime.core;
-using Lime.colors;
 namespace Lime
 {
   class Run
@@ -27,13 +26,9 @@ namespace Lime
       {
         CreateNewAccount.Register(projectFilePath);
       }
-      Console.ReadKey();
-      //While.
-      //Switch Case.
-      //Create command - Create new account & delete.
-      //Create command - Create New file & directory & delete.
-      //Create command - Rename Name account.
-      //Create command - Rename file & directory.
+
+      Cadence cadence = new Cadence()!;
+      cadence.Terminal();
     }
   }
 }

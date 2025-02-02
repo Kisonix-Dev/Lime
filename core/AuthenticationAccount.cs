@@ -1,50 +1,65 @@
 using System;
+using Lime.colors;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
 using System.Text;
-using System.Collections.Generic;
 namespace Lime.core
 {
   public static class AuthenticationAccount
   {
+    private static User? authenticatedUser;
     public static void Authentication(string filePath)
     {
       List<User> users = LoadUsers(filePath);
+
+      if (users == null || users.Count == 0)
+      {
+        Console.WriteLine("Не удалось загрузить пользователей или список пуст.");
+        return;
+      }
+
       while (true)
       {
         Console.Clear();
-        Console.ForegroundColor = ConsoleColor.Yellow;
+        Colors.Yellow();
         Console.WriteLine($"Вход в учётную запись пользователя");
         Console.ResetColor();
         Console.WriteLine();
-        Console.ForegroundColor = ConsoleColor.Blue;
+
+        Colors.Blue();
         Console.Write($"Введите имя: ");
         Console.ResetColor();
         string username = Console.ReadLine()!;
-        Console.ForegroundColor = ConsoleColor.Blue;
+
+        Colors.Blue();
         Console.Write($"Введите пароль: ");
         Console.ResetColor();
         string password = Console.ReadLine()!;
 
         string hashedPassword = HashPassword(password);
-        var user = users.Find(u => u.Username == username && u.Password == hashedPassword);
-        if (user != null)
+        authenticatedUser = users.Find(u => u.Username == username && u.Password == hashedPassword);
+
+        if (authenticatedUser != null)
         {
           Console.Clear();
-          Console.ForegroundColor = ConsoleColor.Green;
-          Console.WriteLine($"Добро пожаловать, " + username + "!");
+          Colors.Green();
+          Console.WriteLine($"Добро пожаловать, {authenticatedUser.Username}!");
           Console.ResetColor();
           break;
         }
         else
         {
           Console.Clear();
-          Console.ForegroundColor = ConsoleColor.Red;
+          Colors.Red();
           Console.WriteLine($"Не правильный логин или пароль, попробуйте снова!");
           Console.ResetColor();
           Thread.Sleep(1000);
         }
       }
+    }
+    public static User? GetAuthenticatedUser()
+    {
+      return authenticatedUser;
     }
     private static List<User> LoadUsers(string filePath)
     {

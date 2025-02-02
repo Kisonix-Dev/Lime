@@ -1,5 +1,4 @@
 using System;
-using System.Drawing;
 using Lime.colors;
 namespace Lime.core
 {
