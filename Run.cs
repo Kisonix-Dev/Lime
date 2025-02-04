@@ -9,6 +9,7 @@ namespace Lime
     public static string projectFilePath = Path.Combine(baseDirectory, "database", "account", "userdata.json");
     static void Main()
     {
+      Console.Title = "Lime";
       Boot func = new Boot()!;
       func.Function_boot_system();
 

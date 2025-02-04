@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "s9j3BC2me6g=",
+  "dgSpecHash": "zi6TCSMeZ8A=",
   "success": true,
   "projectFilePath": "/home/user/github/Lime/Lime.csproj",
   "expectedPackageFiles": [
-    "/home/user/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512"
+    "/home/user/.nuget/packages/keralua/1.4.3/keralua.1.4.3.nupkg.sha512",
+    "/home/user/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/home/user/.nuget/packages/nlua/1.7.4/nlua.1.7.4.nupkg.sha512"
   ],
   "logs": []
 }

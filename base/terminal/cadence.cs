@@ -1,18 +1,25 @@
 using System;
 using System.Diagnostics;
+using System.Collections.Generic;
+using System.Formats.Asn1;
+using System.Runtime.CompilerServices;
 using Lime.colors;
 namespace Lime.core
 {
   class Cadence
   {
+    private readonly string PC = "PC-0";
     public void Terminal()
     {
+      Console.Title = "Lime";
       var user = AuthenticationAccount.GetAuthenticatedUser();
-      var cmd = new Interpreter.Command()!;
+      var cmd = new Interpreter.Commands()!;
 
       while (true)
       {
-        Console.Write($"PC | {user!.Username} | > ");
+        Colors.Cyan();
+        Console.Write($"{user!.Username} | {PC} | > ");
+        Console.ResetColor();
         string Input = Console.ReadLine()!;
 
         switch (Input)
@@ -23,12 +30,22 @@ namespace Lime.core
           case "uname -r":
             cmd.unameR();
             break;
+          case "uname --realese":
+            cmd.unameR();
+            //cmd.unameRealese();
+            break;
           case "who":
             cmd.who();
+            break;
+          case "clear":
+            cmd.clear();
             break;
           case "exit":
             cmd.exit();
             return;
+          case "test": //Soon...
+            cmd.Test();
+            break;
           default:
             Colors.Red();
             Console.WriteLine("Неверная команда!");

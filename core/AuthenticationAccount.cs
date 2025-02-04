@@ -45,6 +45,14 @@ namespace Lime.core
           Colors.Green();
           Console.WriteLine($"Добро пожаловать, {authenticatedUser.Username}!");
           Console.ResetColor();
+          Thread.Sleep(1500);
+          Console.Clear();
+
+          Colors.Gray();
+          Console.WriteLine($"Терминал Cadence PC-0 \n Здесь вы сможете отправлять команды и получать соответствующий результат.");
+          Console.WriteLine($"Введите команду - help для подробной информации о командах.");
+          Console.ResetColor();
+          Console.WriteLine();
           break;
         }
         else
