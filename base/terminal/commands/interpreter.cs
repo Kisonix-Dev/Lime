@@ -42,9 +42,10 @@ namespace Lime.core
       {
         Console.Clear();
         Colors.Yellow();
-        Console.WriteLine($"Выход из системы!");
+        Console.WriteLine("Выход из системы...");
         Console.ResetColor();
         Thread.Sleep(1000);
+        Console.Clear();
       }
       public void Test()
       {

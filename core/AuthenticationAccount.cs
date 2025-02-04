@@ -14,7 +14,7 @@ namespace Lime.core
 
       if (users == null || users.Count == 0)
       {
-        Console.WriteLine("Не удалось загрузить пользователей или список пуст.");
+        Console.WriteLine("Не удалось загрузить пользователей или список пуст!");
         return;
       }
 
@@ -22,17 +22,17 @@ namespace Lime.core
       {
         Console.Clear();
         Colors.Yellow();
-        Console.WriteLine($"Вход в учётную запись пользователя");
+        Console.WriteLine("Вход в учётную запись пользователя");
         Console.ResetColor();
         Console.WriteLine();
 
         Colors.Blue();
-        Console.Write($"Введите имя: ");
+        Console.Write("Введите имя > ");
         Console.ResetColor();
         string username = Console.ReadLine()!;
 
         Colors.Blue();
-        Console.Write($"Введите пароль: ");
+        Console.Write("Введите пароль > ");
         Console.ResetColor();
         string password = Console.ReadLine()!;
 
@@ -49,8 +49,9 @@ namespace Lime.core
           Console.Clear();
 
           Colors.Gray();
-          Console.WriteLine($"Терминал Cadence PC-0 \n Здесь вы сможете отправлять команды и получать соответствующий результат.");
-          Console.WriteLine($"Введите команду - help для подробной информации о командах.");
+          Console.WriteLine(@"Терминал Cadence PC-0
+Здесь вы сможете отправлять команды и получать соответствующий результат.
+Введите команду - help для подробной информации о командах.");
           Console.ResetColor();
           Console.WriteLine();
           break;
@@ -59,7 +60,7 @@ namespace Lime.core
         {
           Console.Clear();
           Colors.Red();
-          Console.WriteLine($"Не правильный логин или пароль, попробуйте снова!");
+          Console.WriteLine("Не правильный логин или пароль, попробуйте снова!");
           Console.ResetColor();
           Thread.Sleep(1000);
         }

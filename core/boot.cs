@@ -11,7 +11,7 @@ namespace Lime.core
       int totalSteps = 50;
       Logo.PrintLogo();
       Console.WriteLine();
-      Console.Write($"[");
+      Console.Write("[");
 
       for (int i = 0; i <= totalSteps; i++)
       {
@@ -25,9 +25,9 @@ namespace Lime.core
 
         Thread.Sleep(300);
       }
-      Console.WriteLine($"]");
+      Console.WriteLine("]");
       Console.WriteLine();
-      Console.WriteLine($"Загрузка завершена!");
+      Console.WriteLine("Загрузка завершена!");
       Thread.Sleep(1000);
     }
   }

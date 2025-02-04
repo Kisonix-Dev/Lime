@@ -18,17 +18,17 @@ namespace Lime.core
     {
       Console.Clear();
       Colors.Yellow();
-      Console.WriteLine($"Создание учётной записи пользователя");
+      Console.WriteLine("Создание учётной записи пользователя");
       Console.ResetColor();
       Console.WriteLine();
 
       Colors.Blue();
-      Console.Write($"Введите имя: ");
+      Console.Write("Введите имя: ");
       Console.ResetColor();
       string username = Console.ReadLine()!;
 
       Colors.Blue();
-      Console.Write($"Введите пароль: ");
+      Console.Write("Введите пароль: ");
       Console.ResetColor();
       string password = Console.ReadLine()!;
 
@@ -41,7 +41,7 @@ namespace Lime.core
 
       Console.Clear();
       Colors.Green();
-      Console.WriteLine($"Учётная запись создана.");
+      Console.WriteLine("Учётная запись создана.");
       Console.ResetColor();
       Thread.Sleep(1700);
       AuthenticationAccount.Authentication(filePath);
