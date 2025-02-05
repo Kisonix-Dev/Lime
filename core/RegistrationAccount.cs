@@ -1,11 +1,11 @@
 using System;
 using Lime.colors;
 using Newtonsoft.Json;
-using System.Threading;
 using System.Security.Cryptography;
 using System.Text;
 namespace Lime.core
 {
+  //Создание учётной записи пользователя. 
   public class User
   {
     public int Id { get; set; }
@@ -16,21 +16,58 @@ namespace Lime.core
   {
     public static void Register(string filePath)
     {
-      Console.Clear();
-      Colors.Yellow();
-      Console.WriteLine("Создание учётной записи пользователя");
-      Console.ResetColor();
-      Console.WriteLine();
+      string username;
+      while (true)
+      {
+        Console.Clear();
+        Colors.Yellow();
+        Console.WriteLine("Создание учётной записи пользователя\n");
+        Console.ResetColor();
 
-      Colors.Blue();
-      Console.Write("Введите имя: ");
-      Console.ResetColor();
-      string username = Console.ReadLine()!;
+        Colors.Blue();
+        Console.Write("Введите имя: ");
+        Console.ResetColor();
+        username = Console.ReadLine()!;
 
-      Colors.Blue();
-      Console.Write("Введите пароль: ");
-      Console.ResetColor();
-      string password = Console.ReadLine()!;
+        if (string.IsNullOrWhiteSpace(username))
+        {
+          Colors.Red();
+          Console.WriteLine("Поле для ввода не должно быть пустым!");
+          Thread.Sleep(1000);
+          Console.Clear();
+        }
+        else
+        {
+          break;
+        }
+      }
+
+      string password;
+      while (true)
+      {
+        Console.Clear();
+        Colors.Yellow();
+        Console.WriteLine("Создание учётной записи пользователя\n");
+        Console.ResetColor();
+
+        Colors.Blue();
+        Console.Write("Введите пароль: ");
+        Console.ResetColor();
+        password = Console.ReadLine()!;
+
+        if (string.IsNullOrWhiteSpace(password))
+        {
+          Colors.Red();
+          Console.WriteLine("Поле для ввода не должно быть пустым!");
+          Console.ResetColor();
+          Thread.Sleep(1000);
+          Console.Clear();
+        }
+        else
+        {
+          break;
+        }
+      }
 
       var users = LoadUsers(filePath);
       int newId = users.Count > 0 ? users[^1].Id + 1 : 1;
@@ -55,6 +92,7 @@ namespace Lime.core
       }
       return new List<User>()!;
     }
+    //Шифрование пароля учётной записи пользователя.
     private static string HashPassword(string password)
     {
       using (var sha256 = SHA256.Create())

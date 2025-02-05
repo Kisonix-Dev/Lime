@@ -3,15 +3,15 @@ using System.Threading;
 using Lime.colors;
 namespace Lime.core
 {
+  //Загрузочный экран.
   class Boot
   {
-    public void Function_boot_system()
+    public void FunctionBootSystem()
     {
       Console.Clear();
       int totalSteps = 50;
       Logo.PrintLogo();
-      Console.WriteLine();
-      Console.Write("[");
+      Console.Write("\n[");
 
       for (int i = 0; i <= totalSteps; i++)
       {
@@ -26,8 +26,7 @@ namespace Lime.core
         Thread.Sleep(300);
       }
       Console.WriteLine("]");
-      Console.WriteLine();
-      Console.WriteLine("Загрузка завершена!");
+      Console.WriteLine("\nЗагрузка завершена!");
       Thread.Sleep(1000);
     }
   }

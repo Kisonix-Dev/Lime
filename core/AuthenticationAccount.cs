@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 namespace Lime.core
 {
+  //Авторизация учётной записи пользователя.
   public static class AuthenticationAccount
   {
     private static User? authenticatedUser;
@@ -14,27 +15,68 @@ namespace Lime.core
 
       if (users == null || users.Count == 0)
       {
+        Colors.Red();
         Console.WriteLine("Не удалось загрузить пользователей или список пуст!");
+        Console.ResetColor();
         return;
       }
 
       while (true)
       {
-        Console.Clear();
-        Colors.Yellow();
-        Console.WriteLine("Вход в учётную запись пользователя");
-        Console.ResetColor();
-        Console.WriteLine();
+        string username;
+        while (true)
+        {
+          Console.Clear();
+          Colors.Yellow();
+          Console.WriteLine("Вход в учётную запись пользователя\n");
+          Console.ResetColor();
 
-        Colors.Blue();
-        Console.Write("Введите имя > ");
-        Console.ResetColor();
-        string username = Console.ReadLine()!;
+          Colors.Blue();
+          Console.Write("Введите имя > ");
+          Console.ResetColor();
+          username = Console.ReadLine()!;
 
-        Colors.Blue();
-        Console.Write("Введите пароль > ");
-        Console.ResetColor();
-        string password = Console.ReadLine()!;
+          if (string.IsNullOrWhiteSpace(username))
+          {
+            Colors.Red();
+            Console.WriteLine("Поле для ввода не должно быть пустым!");
+            Thread.Sleep(1000);
+            Console.Clear();
+          }
+          else
+          {
+            Thread.Sleep(300);
+            break;
+          }
+        }
+
+        string password;
+        while (true)
+        {
+          Console.Clear();
+          Colors.Yellow();
+          Console.WriteLine("Вход в учётную запись пользователя\n");
+          Console.ResetColor();
+
+          Colors.Blue();
+          Console.Write("Введите пароль > ");
+          Console.ResetColor();
+          password = Console.ReadLine()!;
+
+          if (string.IsNullOrWhiteSpace(password))
+          {
+            Colors.Red();
+            Console.WriteLine("Поле для ввода не должно быть пустым!");
+            Console.ResetColor();
+            Thread.Sleep(1000);
+            Console.Clear();
+          }
+          else
+          {
+            Thread.Sleep(300);
+            break;
+          }
+        }
 
         string hashedPassword = HashPassword(password);
         authenticatedUser = users.Find(u => u.Username == username && u.Password == hashedPassword);
@@ -51,9 +93,8 @@ namespace Lime.core
           Colors.Gray();
           Console.WriteLine(@"Терминал Cadence PC-0
 Здесь вы сможете отправлять команды и получать соответствующий результат.
-Введите команду - help для подробной информации о командах.");
+Введите команду - 'help' для подробной информации о командах.");
           Console.ResetColor();
-          Console.WriteLine();
           break;
         }
         else
@@ -62,10 +103,11 @@ namespace Lime.core
           Colors.Red();
           Console.WriteLine("Не правильный логин или пароль, попробуйте снова!");
           Console.ResetColor();
-          Thread.Sleep(1000);
+          Thread.Sleep(1500);
         }
       }
     }
+
     public static User? GetAuthenticatedUser()
     {
       return authenticatedUser;
@@ -79,6 +121,7 @@ namespace Lime.core
       }
       return new List<User>()!;
     }
+    //Шифрование пароля учётной записи пользователя.
     private static string HashPassword(string password)
     {
       using (var sha256 = SHA256.Create())

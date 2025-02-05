@@ -1,8 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using Lime.core;
 namespace Lime
 {
+  //Загрузчик операционной системы. 
   class Run
   {
     public static string baseDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "LimeOS");
@@ -10,8 +12,8 @@ namespace Lime
     static void Main()
     {
       Console.Title = "Lime";
-      Boot func = new Boot()!;
-      func.Function_boot_system();
+      Boot boot = new Boot()!;
+      boot.FunctionBootSystem();
 
       string projectDirectoryPath = Path.GetDirectoryName(projectFilePath)!;
       if (!Directory.Exists(projectDirectoryPath))

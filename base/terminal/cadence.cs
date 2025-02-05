@@ -2,6 +2,7 @@ using System;
 using Lime.colors;
 namespace Lime.core
 {
+  //Терминал Cadence.
   class Cadence
   {
     private readonly string PC = "PC-0";
@@ -20,40 +21,48 @@ namespace Lime.core
 
         switch (Input)
         {
+          //Информация о системе.
           case "uname":
-            cmd.uname();
+            cmd.Uname();
             break;
           case "uname -r":
-            cmd.unameR();
+            cmd.UnameR();
             break;
           case "uname --realese":
-            cmd.unameR();
+            cmd.UnameR();
             //cmd.unameRealese();
             break;
+          //Информацию о пользователях.
           case "who":
-            cmd.who();
+            cmd.Who();
             break;
-          case "clear":
-            cmd.clear();
+          //Работа с файловой системой.
+          case $"mkdir":
+            cmd.MkdirA();
             break;
-          case "exit":
-            cmd.exit();
-            return;
+          //Lua Скрипты.
           case "test": //Soon...
             cmd.Test();
             break;
+          //остальные команды.
+          case "clear":
+            cmd.Clear();
+            break;
+          case "exit":
+            cmd.Exit();
+            return;
           default:
             Colors.Red();
             Console.WriteLine("Неверная команда!");
             Console.ResetColor();
             continue;
         }
-        //Create command - Create new account & delete.
-        //Create command - Create New file & directory & delete.
-        //Create command - Rename Name account.
-        //Create command - Rename file & directory.
-        //Create command - ls, cd, cat...
-        //Create more...
+        /*Create command - Create new account & delete.
+          Create command - Create New file & directory & delete.
+          Create command - Rename Name account.
+          Create command - Rename file & directory.
+          Create command - ls, cd, cat...
+          Create more...*/
       }
     }
   }

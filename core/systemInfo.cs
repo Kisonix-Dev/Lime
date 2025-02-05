@@ -1,6 +1,7 @@
 using System;
 namespace Lime.core
 {
+  //Системная информация.
   public class SystemInfo
   {
     public string KernelName = "BlackPony";
