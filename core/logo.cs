@@ -2,7 +2,7 @@ using System;
 using Lime.colors;
 namespace Lime.core
 {
-  //Логотип для загрузочного экрана.
+  //Logo for loading screen.
   public class Logo
   {
     public static void PrintLogo()

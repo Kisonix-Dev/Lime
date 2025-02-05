@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 namespace Lime.core
 {
-  //Авторизация учётной записи пользователя.
+  //Authorize the user account.
   public static class AuthenticationAccount
   {
     private static User? authenticatedUser;
@@ -121,7 +121,7 @@ namespace Lime.core
       }
       return new List<User>()!;
     }
-    //Шифрование пароля учётной записи пользователя.
+    //Encrypt the user account password.
     private static string HashPassword(string password)
     {
       using (var sha256 = SHA256.Create())

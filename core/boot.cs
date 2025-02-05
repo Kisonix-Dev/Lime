@@ -3,7 +3,7 @@ using System.Threading;
 using Lime.colors;
 namespace Lime.core
 {
-  //Загрузочный экран.
+  //Loading screen.
   class Boot
   {
     public void FunctionBootSystem()

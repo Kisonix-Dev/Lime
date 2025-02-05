@@ -1,8 +1,9 @@
 using System;
+using System.IO;
 using Lime.colors;
 namespace Lime.core
 {
-  //Терминал Cadence.
+  //Cadence Terminal.
   class Cadence
   {
     private readonly string PC = "PC-0";
@@ -14,14 +15,16 @@ namespace Lime.core
 
       while (true)
       {
+        user = AuthenticationAccount.GetAuthenticatedUser();
+        string CurrentDirectory = "/";
         Colors.Cyan();
-        Console.Write($"{user!.Username} | {PC} | > ");
+        Console.Write($"{user!.Username}@{PC}:{CurrentDirectory}$ ");
         Console.ResetColor();
         string Input = Console.ReadLine()!;
 
         switch (Input)
         {
-          //Информация о системе.
+          //System information.
           case "uname":
             cmd.Uname();
             break;
@@ -32,29 +35,41 @@ namespace Lime.core
             cmd.UnameR();
             //cmd.unameRealese();
             break;
-          //Информацию о пользователях.
+          //Information about users.
           case "who":
             cmd.Who();
             break;
-          //Работа с файловой системой.
-          case $"mkdir":
+          //Working with the file system.
+          case "mkdir":
             cmd.MkdirA();
             break;
-          //Lua Скрипты.
+          //Lua Scripts.
           case "test": //Soon...
             cmd.Test();
             break;
-          //остальные команды.
+          //other commands.
           case "clear":
             cmd.Clear();
             break;
-          case "exit":
-            cmd.Exit();
+
+          case "user --add":
+            cmd.UserAdd();
+            break;
+          case "logout":
+            cmd.Logout();
+            break;
+
+          case "poweroff":
+            cmd.PowerOff();
             return;
           default:
-            Colors.Red();
-            Console.WriteLine("Неверная команда!");
-            Console.ResetColor();
+            if (string.IsNullOrWhiteSpace(Input)) { }
+            else
+            {
+              Colors.Red();
+              Console.WriteLine($"{Input}: Команда не найдена");
+              Console.ResetColor();
+            }
             continue;
         }
         /*Create command - Create new account & delete.

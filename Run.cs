@@ -1,10 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
-using System.IO;
 using Lime.core;
 namespace Lime
 {
-  //Загрузчик операционной системы. 
+  //Operating system loader.
   class Run
   {
     public static string baseDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "LimeOS");
@@ -12,6 +10,8 @@ namespace Lime
     static void Main()
     {
       Console.Title = "Lime";
+
+      //Loading screen.
       Boot boot = new Boot()!;
       boot.FunctionBootSystem();
 
@@ -29,7 +29,7 @@ namespace Lime
       {
         CreateNewAccount.Register(projectFilePath);
       }
-
+      //Cadence terminal.
       Cadence cadence = new Cadence()!;
       cadence.Terminal();
     }

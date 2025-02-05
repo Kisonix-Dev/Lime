@@ -4,10 +4,10 @@ using KeraLua;
 using Lime.colors;
 namespace Lime.core
 {
-  //интерпретатор для терминала Cadence. 
+  //Interpreter for the Cadence terminal.
   class Interpreter
   {
-    //Обработка команд терминала.
+    //Processing terminal commands.
     public class Commands : Options
     {
       private readonly SystemInfo sysinfo;
@@ -40,7 +40,34 @@ namespace Lime.core
       {
         Console.Clear();
       }
-      public void Exit()
+      //Note:
+      /*I know it's bad manners to duplicate code, but for now I've decided to leave it as is. (Temporarily).
+      I'll create a separate class for the path later.*/
+      public void UserAdd()
+      {
+        Console.Clear();
+        Colors.Yellow();
+        Console.WriteLine("Выход из текущего профиля...");
+        Console.ResetColor();
+        Thread.Sleep(1000);
+        Console.Clear();
+        string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        string filePath = Path.Combine(homeDirectory, "LimeOS", "database", "account", "userdata.json");
+        CreateNewAccount.Register(filePath);
+      }
+      public void Logout()
+      {
+        Console.Clear();
+        Colors.Yellow();
+        Console.WriteLine("Выход из текущего профиля...");
+        Console.ResetColor();
+        Thread.Sleep(1000);
+        Console.Clear();
+        string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        string filePath = Path.Combine(homeDirectory, "LimeOS", "database", "account", "userdata.json");
+        AuthenticationAccount.Authentication(filePath);
+      }
+      public void PowerOff()
       {
         Console.Clear();
         Colors.Yellow();
@@ -63,7 +90,7 @@ namespace Lime.core
         }
       }
     }
-    //Обработка опций.
+    //Processing options.
     public class Options : Arguments
     {
       public void UnameR(SystemInfo sysinfo)
@@ -79,7 +106,7 @@ namespace Lime.core
       Console.ResetColor();
       }*/
     }
-    //Обработка аргументов.
+    //Processing arguments.
     public class Arguments
     {
       public void MkdirA()
