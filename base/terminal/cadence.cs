@@ -15,6 +15,7 @@ namespace Lime.core
 
       while (true)
       {
+        Console.CursorVisible = true;
         user = AuthenticationAccount.GetAuthenticatedUser();
         string CurrentDirectory = "/";
         Colors.Cyan();
@@ -50,6 +51,10 @@ namespace Lime.core
           //other commands.
           case "clear":
             cmd.Clear();
+            break;
+
+          case "help":
+            cmd.Help();
             break;
 
           case "user --add":

@@ -40,11 +40,17 @@ namespace Lime.core
       {
         Console.Clear();
       }
+      public void Help()
+      {
+        Help help = new Help()!;
+        help.DocHelp();
+      }
       //Note:
       /*I know it's bad manners to duplicate code, but for now I've decided to leave it as is. (Temporarily).
       I'll create a separate class for the path later.*/
       public void UserAdd()
       {
+        Console.CursorVisible = false;
         Console.Clear();
         Colors.Yellow();
         Console.WriteLine("Выход из текущего профиля...");
@@ -57,6 +63,7 @@ namespace Lime.core
       }
       public void Logout()
       {
+        Console.CursorVisible = false;
         Console.Clear();
         Colors.Yellow();
         Console.WriteLine("Выход из текущего профиля...");
@@ -69,6 +76,7 @@ namespace Lime.core
       }
       public void PowerOff()
       {
+        Console.CursorVisible = false;
         Console.Clear();
         Colors.Yellow();
         Console.WriteLine("Выход из системы...");

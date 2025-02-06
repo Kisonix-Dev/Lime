@@ -16,9 +16,12 @@ namespace Lime.core
   {
     public static void Register(string filePath)
     {
+      Console.CursorVisible = true;
+
       string username;
       while (true)
       {
+        Console.CursorVisible = true;
         Console.Clear();
         Colors.Yellow();
         Console.WriteLine("Создание учётной записи пользователя\n");
@@ -31,6 +34,7 @@ namespace Lime.core
 
         if (string.IsNullOrWhiteSpace(username))
         {
+          Console.CursorVisible = false;
           Colors.Red();
           Console.WriteLine("Поле для ввода не должно быть пустым!");
           Thread.Sleep(1000);
@@ -45,6 +49,7 @@ namespace Lime.core
       string password;
       while (true)
       {
+        Console.CursorVisible = true;
         Console.Clear();
         Colors.Yellow();
         Console.WriteLine("Создание учётной записи пользователя\n");
@@ -57,6 +62,7 @@ namespace Lime.core
 
         if (string.IsNullOrWhiteSpace(password))
         {
+          Console.CursorVisible = false;
           Colors.Red();
           Console.WriteLine("Поле для ввода не должно быть пустым!");
           Console.ResetColor();
@@ -76,6 +82,7 @@ namespace Lime.core
       users.Add(new User { Id = newId, Username = username, Password = hashedPassword });
       File.WriteAllText(filePath, JsonConvert.SerializeObject(users, Formatting.Indented));
 
+      Console.CursorVisible = false;
       Console.Clear();
       Colors.Green();
       Console.WriteLine("Учётная запись создана.");

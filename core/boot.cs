@@ -8,6 +8,7 @@ namespace Lime.core
   {
     public void FunctionBootSystem()
     {
+      Console.CursorVisible = false;
       Console.Clear();
       int totalSteps = 50;
       Logo.PrintLogo();

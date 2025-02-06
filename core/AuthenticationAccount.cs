@@ -11,10 +11,13 @@ namespace Lime.core
     private static User? authenticatedUser;
     public static void Authentication(string filePath)
     {
+      Console.CursorVisible = true;
+
       List<User> users = LoadUsers(filePath);
 
       if (users == null || users.Count == 0)
       {
+        Console.CursorVisible = false;
         Colors.Red();
         Console.WriteLine("Не удалось загрузить пользователей или список пуст!");
         Console.ResetColor();
@@ -26,6 +29,7 @@ namespace Lime.core
         string username;
         while (true)
         {
+          Console.CursorVisible = true;
           Console.Clear();
           Colors.Yellow();
           Console.WriteLine("Вход в учётную запись пользователя\n");
@@ -38,6 +42,7 @@ namespace Lime.core
 
           if (string.IsNullOrWhiteSpace(username))
           {
+            Console.CursorVisible = false;
             Colors.Red();
             Console.WriteLine("Поле для ввода не должно быть пустым!");
             Thread.Sleep(1000);
@@ -53,6 +58,7 @@ namespace Lime.core
         string password;
         while (true)
         {
+          Console.CursorVisible = true;
           Console.Clear();
           Colors.Yellow();
           Console.WriteLine("Вход в учётную запись пользователя\n");
@@ -65,6 +71,7 @@ namespace Lime.core
 
           if (string.IsNullOrWhiteSpace(password))
           {
+            Console.CursorVisible = false;
             Colors.Red();
             Console.WriteLine("Поле для ввода не должно быть пустым!");
             Console.ResetColor();
@@ -83,6 +90,7 @@ namespace Lime.core
 
         if (authenticatedUser != null)
         {
+          Console.CursorVisible = false;
           Console.Clear();
           Colors.Green();
           Console.WriteLine($"Добро пожаловать, {authenticatedUser.Username}!");
@@ -99,6 +107,7 @@ namespace Lime.core
         }
         else
         {
+          Console.CursorVisible = false;
           Console.Clear();
           Colors.Red();
           Console.WriteLine("Не правильный логин или пароль, попробуйте снова!");
