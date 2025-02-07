@@ -2,6 +2,7 @@ using System;
 using NLua;
 using KeraLua;
 using Lime.colors;
+using Lime.Core;
 namespace Lime.core
 {
   //Interpreter for the Cadence terminal.
@@ -21,6 +22,11 @@ namespace Lime.core
         Console.WriteLine($"Название ядра: {sysinfo.KernelName}");
         Console.ResetColor();
       }
+      public void UnameRHelp()
+      {
+        Uname uname = new Uname()!;
+        uname.UnameR();
+      }
       public void UnameR()
       {
         base.UnameR(sysinfo);
@@ -36,18 +42,6 @@ namespace Lime.core
         Console.WriteLine($"Активный пользователь: {user!.Username}");
         Console.ResetColor();
       }
-      public void Clear()
-      {
-        Console.Clear();
-      }
-      public void Help()
-      {
-        Help help = new Help()!;
-        help.DocHelp();
-      }
-      //Note:
-      /*I know it's bad manners to duplicate code, but for now I've decided to leave it as is. (Temporarily).
-      I'll create a separate class for the path later.*/
       public void UserAdd()
       {
         Console.CursorVisible = false;
@@ -61,6 +55,18 @@ namespace Lime.core
         string filePath = Path.Combine(homeDirectory, "LimeOS", "database", "account", "userdata.json");
         CreateNewAccount.Register(filePath);
       }
+      public void Clear()
+      {
+        Console.Clear();
+      }
+      public void Help()
+      {
+        Help help = new Help()!;
+        help.DocHelp();
+      }
+      //Note:
+      /*I know it's bad manners to duplicate code, but for now I've decided to leave it as is. (Temporarily).
+      I'll create a separate class for the path later.*/
       public void Logout()
       {
         Console.CursorVisible = false;
@@ -83,6 +89,7 @@ namespace Lime.core
         Console.ResetColor();
         Thread.Sleep(1000);
         Console.Clear();
+        Console.CursorVisible = true;
       }
       public void Test()
       {

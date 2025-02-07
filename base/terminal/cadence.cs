@@ -36,9 +36,16 @@ namespace Lime.core
             cmd.UnameR();
             //cmd.unameRealese();
             break;
+          case "uname --help":
+            cmd.UnameRHelp();
+            break;
           //Information about users.
           case "who":
             cmd.Who();
+            break;
+          //User Management 
+          case "useradd":
+            cmd.UserAdd();
             break;
           //Working with the file system.
           case "mkdir":
@@ -52,18 +59,13 @@ namespace Lime.core
           case "clear":
             cmd.Clear();
             break;
-
           case "help":
             cmd.Help();
-            break;
-
-          case "user --add":
-            cmd.UserAdd();
             break;
           case "logout":
             cmd.Logout();
             break;
-
+          //System management
           case "poweroff":
             cmd.PowerOff();
             return;
