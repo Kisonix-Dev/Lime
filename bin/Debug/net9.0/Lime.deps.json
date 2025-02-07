@@ -9,7 +9,8 @@
       "Lime/1.0.0": {
         "dependencies": {
           "NLua": "1.7.4",
-          "Newtonsoft.Json": "13.0.3"
+          "Newtonsoft.Json": "13.0.3",
+          "WhiteText": "1.0.0.0"
         },
         "runtime": {
           "Lime.dll": {}
@@ -123,6 +124,14 @@
             "fileVersion": "1.7.4.0"
           }
         }
+      },
+      "WhiteText/1.0.0.0": {
+        "runtime": {
+          "WhiteText.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -152,6 +161,11 @@
       "sha512": "sha512-2KZtcTk0ZRROBAnVrXoEF1Pru1r4rTVQ8Ev5YYmMOjhV6lLosD2S/AKkoHNWe7Er6Swuav2nliVQm12i/zoG6w==",
       "path": "nlua/1.7.4",
       "hashPath": "nlua.1.7.4.nupkg.sha512"
+    },
+    "WhiteText/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

@@ -3,6 +3,7 @@ using NLua;
 using KeraLua;
 using Lime.colors;
 using Lime.Core;
+using WhiteText;
 namespace Lime.core
 {
   //Interpreter for the Cadence terminal.
@@ -103,6 +104,11 @@ namespace Lime.core
             Console.WriteLine($"Результат: {result[0]}");
           }
         }
+      }
+      //SoftWare.
+      public void WhiteText()
+      {
+        TextEditor.Editor();
       }
     }
     //Processing options.

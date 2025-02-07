@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using Lime.colors;
+using WhiteText;
 namespace Lime.core
 {
   //Cadence Terminal.
@@ -69,6 +70,10 @@ namespace Lime.core
           case "poweroff":
             cmd.PowerOff();
             return;
+          //SoftWare 
+          case "WhiteText":
+            cmd.WhiteText();
+            break;
           default:
             if (string.IsNullOrWhiteSpace(Input)) { }
             else
@@ -79,12 +84,12 @@ namespace Lime.core
             }
             continue;
         }
-        /*Create command - Create new account & delete.
-          Create command - Create New file & directory & delete.
-          Create command - Rename Name account.
-          Create command - Rename file & directory.
-          Create command - ls, cd, cat...
-          Create more...*/
+        /*Create command - Rename Name account.
+         Create command - Delete current account.
+         Create command - Create New file & directory & delete.
+         Create command - Rename file & directory.
+         Create command - ls, cd, cat...
+         Create more...*/
       }
     }
   }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Lime")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+923b5df2b174c2214b17dd7d6aa429b61493ad11")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+79488cea9133ccdc185c77dd9f180fca2f96f115")]
 [assembly: System.Reflection.AssemblyProductAttribute("Lime")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Lime")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -10,6 +10,9 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="NLua" Version="1.7.4" />
+    <Reference Include="WhiteText">
+    <HintPath>app/whitetext/WhiteText.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
