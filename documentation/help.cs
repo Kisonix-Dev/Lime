@@ -27,7 +27,9 @@ namespace Lime.core
       Console.WriteLine("help - (Помощь по всем командам.)");
       Console.WriteLine("[Command] --help - (Помощь по определённой команде.)");
       //System management
-      Console.WriteLine("poweroff - (Выключение операционной системы.)\n");
+      Console.WriteLine("poweroff - (Выключение операционной системы.)");
+      //SoftWare 
+      Console.WriteLine("whitetext, wt - (Открыть текстовой редактор)\n");
     }
   }
 }

@@ -71,7 +71,10 @@ namespace Lime.core
             cmd.PowerOff();
             return;
           //SoftWare 
-          case "WhiteText":
+          case "whitetext":
+            cmd.WhiteText();
+            break;
+          case "wt":
             cmd.WhiteText();
             break;
           default:

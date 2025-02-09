@@ -108,7 +108,11 @@ namespace Lime.core
       //SoftWare.
       public void WhiteText()
       {
-        TextEditor.Editor();
+        //TextEditor texteditor = new TextEditor()!;
+        //texteditor.Editor();
+
+        WhiteText whitetext = new WhiteText()!;
+        whitetext.WhiteTextMenu();
       }
     }
     //Processing options.
