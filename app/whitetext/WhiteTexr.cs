@@ -54,7 +54,6 @@ namespace Lime.core
         }
       }
     }
-
     //Create new text file.
     private void CreateTextFile()
     {
@@ -96,9 +95,9 @@ namespace Lime.core
         Console.Clear();
         Colors.Red();
         Console.WriteLine($"Ошибка при создании файла: {ex.Message}");
+        Console.ResetColor();
       }
       Console.CursorVisible = false;
-      Console.ResetColor();
       Console.WriteLine("\nНажмите любую клавишу для продолжения...");
       Console.ReadKey();
     }
@@ -107,6 +106,7 @@ namespace Lime.core
     private void OpenTextFile()
     {
       Console.Clear();
+
       string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
       string directoryPath = Path.Combine(homeDirectory, "LimeOS", "main", "root", "home", "user");
 
@@ -128,9 +128,9 @@ namespace Lime.core
         Console.Clear();
         Colors.Red();
         Console.WriteLine($"Ошибка при открытии файла: {ex.Message}");
+        Console.ResetColor();
       }
       Console.CursorVisible = false;
-      Console.ResetColor();
       Console.WriteLine("\nНажмите любую клавишу для продолжения...");
       Console.ReadKey();
     }
@@ -139,6 +139,7 @@ namespace Lime.core
     private void DeleteTextFile()
     {
       Console.Clear();
+
       string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
       string directoryPath = Path.Combine(homeDirectory, "LimeOS", "main", "root", "home", "user");
 
@@ -167,7 +168,6 @@ namespace Lime.core
         Console.ResetColor();
       }
       Console.CursorVisible = false;
-      Console.ResetColor();
       Console.WriteLine("\nНажмите любую клавишу для продолжения...");
       Console.ReadKey();
     }

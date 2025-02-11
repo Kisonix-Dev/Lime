@@ -4,6 +4,8 @@ using KeraLua;
 using Lime.colors;
 using Lime.Core;
 using WhiteText;
+using System.IO.Enumeration;
+using System.Security.Cryptography;
 namespace Lime.core
 {
   //Interpreter for the Cadence terminal.
@@ -153,14 +155,168 @@ namespace Lime.core
         }
         else
         {
-          string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-          string newDirectoryPath = Path.Combine(homeDirectory, "LimeOS", "main", "root", "home", "user", NameDirectory);
+          string HomeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+          string NewDirectoryPath = Path.Combine(HomeDirectory, "LimeOS", "main", "root", "home", "user", NameDirectory);
 
-          Directory.CreateDirectory(newDirectoryPath);
+          Directory.CreateDirectory(NewDirectoryPath);
           Console.Clear();
           Colors.Green();
           Console.WriteLine($"Новая директория {NameDirectory} успешно создана!");
         }
+      }
+      public void Touch()
+      {
+        Console.Clear();
+
+        string HomeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        string NewDirectoryPath = Path.Combine(HomeDirectory, "LimeOS", "main", "root", "home", "user");
+
+        Colors.Blue();
+        Console.Write("Введите имя файла > ");
+        Console.ResetColor();
+
+        string FileName = Console.ReadLine()!;
+        string FullPath = Path.Combine(NewDirectoryPath, FileName);
+
+        try
+        {
+          if (!Directory.Exists(NewDirectoryPath))
+          {
+            Directory.CreateDirectory(NewDirectoryPath);
+          }
+
+          using (StreamWriter writer = new StreamWriter(FullPath))
+          {
+            Console.WriteLine("\nВведите текст (для завершения нажмите дважны на 'Enter'.):\n");
+            string line;
+            while ((line = Console.ReadLine()!) != "")
+            {
+              writer.WriteLine(line);
+            }
+          }
+          Console.CursorVisible = false;
+          Console.ForegroundColor = ConsoleColor.Green;
+          Console.WriteLine($"Файл '{FileName}' успешно создан по пути '{FullPath}");
+          Console.ResetColor();
+        }
+        catch (Exception ex)
+        {
+          Console.CursorVisible = false;
+          Console.Clear();
+          Console.ForegroundColor = ConsoleColor.Red;
+          Console.WriteLine($"Ошибка при создании файла: '{ex.Message}'");
+          Console.ResetColor();
+        }
+        Console.CursorVisible = false;
+        Colors.Green();
+        Console.WriteLine("\nНажмите любую клавишу для продолжения...");
+        Console.ResetColor();
+        Console.ReadKey();
+        Thread.Sleep(1000);
+        Console.Clear();
+      }
+      public void Cat()
+      {
+        Console.Clear();
+
+        string HomeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        string NewDirectoryPath = Path.Combine(HomeDirectory, "LimeOS", "main", "root", "home", "user");
+
+        Colors.Blue();
+        Console.Write("Введите имя файла > ");
+        Console.ResetColor();
+
+        string FileName = Console.ReadLine()!;
+        string FullPath = Path.Combine(NewDirectoryPath, FileName);
+
+        if (!File.Exists(FullPath))
+        {
+          Console.CursorVisible = false;
+          Console.Clear();
+          Colors.Red();
+          Console.WriteLine($"Файл: '{FileName}' не найден!");
+          Console.ResetColor();
+          Thread.Sleep(1000);
+          Console.Clear();
+          return;
+        }
+
+        try
+        {
+          string content = File.ReadAllText(FullPath);
+          Console.Clear();
+          Console.WriteLine($"Содержимое файла: '{FileName}'\n");
+          Console.WriteLine(content);
+        }
+        catch (Exception ex)
+        {
+          Console.Clear();
+          Colors.Red();
+          Console.WriteLine($"Ошибка при открытие файла: '{ex.Message}'");
+          Console.ResetColor();
+        }
+        Console.CursorVisible = false;
+        Colors.Green();
+        Console.WriteLine("\nНажмите на клавишу 'Enter' для продолжения!");
+        Console.ResetColor();
+        Console.ReadKey();
+        Thread.Sleep(1000);
+        Console.Clear();
+      }
+      public void Rm()
+      {
+        Console.Clear();
+
+        string HomeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        string NewDirectoryPath = Path.Combine(HomeDirectory, "LimeOS", "main", "root", "home", "user");
+
+        Colors.Blue();
+        Console.Write("Введите имя файла > ");
+        Console.ResetColor();
+
+        string FileName = Console.ReadLine()!;
+        string FullPath = Path.Combine(NewDirectoryPath, FileName);
+
+        if (!File.Exists(FullPath))
+        {
+          Console.CursorVisible = false;
+          Console.Clear();
+          Colors.Red();
+          Console.WriteLine($"Файл: '{FileName}' не найден!");
+          Console.ResetColor();
+          Thread.Sleep(1000);
+          Console.Clear();
+          return;
+        }
+
+        try
+        {
+          Console.CursorVisible = false;
+          Console.Clear();
+          File.Delete(FullPath);
+          Colors.Green();
+          Console.WriteLine($"Файл: '{FileName}' успешно удалён.");
+          Console.ResetColor();
+          Thread.Sleep(1000);
+          Console.Clear();
+        }
+        catch (Exception ex)
+        {
+          Console.Clear();
+          Colors.Red();
+          Console.WriteLine($"Ошибка при удаление файла: '{ex.Message}'");
+          Colors.Red();
+          Thread.Sleep(1000);
+          Console.Clear();
+        }
+        Console.CursorVisible = false;
+        Console.Clear();
+        Colors.Green();
+        Console.WriteLine("Нажмите на 'Enter' для продолжения!");
+        Console.ResetColor();
+        Console.ReadKey();
+        Thread.Sleep(1000);
+        Console.Clear();
       }
     }
   }

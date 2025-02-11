@@ -49,6 +49,15 @@ namespace Lime.core
             cmd.UserAdd();
             break;
           //Working with the file system.
+          case "touch":
+            cmd.Touch();
+            break;
+          case "cat":
+            cmd.Cat();
+            break;
+          case "rm":
+            cmd.Rm();
+            break;
           case "mkdir":
             cmd.MkdirA();
             break;

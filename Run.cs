@@ -12,8 +12,8 @@ namespace Lime
       Console.Title = "Lime";
 
       //Loading screen.
-      Boot boot = new Boot()!;
-      boot.FunctionBootSystem();
+      //Boot boot = new Boot()!;
+      //boot.FunctionBootSystem();
 
       string projectDirectoryPath = Path.GetDirectoryName(projectFilePath)!;
       if (!Directory.Exists(projectDirectoryPath))

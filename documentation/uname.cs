@@ -13,7 +13,7 @@ namespace Lime.Core
       Console.WriteLine("Аргументы не всегда обязательны к использованию.\n");
       Console.ResetColor();
       //System information
-      Console.WriteLine("uname -r, --realese - (Версия ядра операционной системы.)\n");
+      Console.WriteLine("uname -r, --realese - (Версия ядра операционной системы.)");
     }
   }
 }
