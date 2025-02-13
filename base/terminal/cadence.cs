@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using Lime.app.calculator;
 using Lime.colors;
 using WhiteText;
 namespace Lime.core
@@ -82,6 +83,21 @@ namespace Lime.core
           //SoftWare 
           case "whitetext":
             cmd.WhiteText();
+            break;
+          case "calc":
+            cmd.Calc();
+            break;
+          case "+":
+            cmd.Addition();
+            break;
+          case "-":
+            cmd.Subtraction();
+            break;
+          case "*":
+            cmd.Multiplication();
+            break;
+          case "/":
+            cmd.Division();
             break;
           case "wt":
             cmd.WhiteText();

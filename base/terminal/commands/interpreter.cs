@@ -6,6 +6,7 @@ using Lime.Core;
 using WhiteText;
 using System.IO.Enumeration;
 using System.Security.Cryptography;
+using Lime.app.calculator;
 namespace Lime.core
 {
   //Interpreter for the Cadence terminal.
@@ -115,6 +116,11 @@ namespace Lime.core
 
         WhiteText whitetext = new WhiteText()!;
         whitetext.WhiteTextMenu();
+      }
+      public void Calc()
+      {
+        Calculator calculator = new Calculator();
+        calculator.Calc_Menu();
       }
     }
     //Processing options.
@@ -317,6 +323,22 @@ namespace Lime.core
         Console.ReadKey();
         Thread.Sleep(1000);
         Console.Clear();
+      }
+      public void Addition()
+      {
+
+      }
+      public void Subtraction()
+      {
+
+      }
+      public void Multiplication()
+      {
+
+      }
+      public void Division()
+      {
+
       }
     }
   }

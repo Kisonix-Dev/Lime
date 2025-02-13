@@ -99,9 +99,7 @@ namespace Lime.core
           Console.Clear();
 
           Colors.Gray();
-          Console.WriteLine(@"Терминал Cadence PC-0
-Здесь вы сможете отправлять команды и получать соответствующий результат.
-Введите команду - 'help' для подробной информации о командах.");
+          Console.WriteLine("Терминал Cadence PC-0.\nВведите команду - 'help' для подробной информации о командах.\n");
           Console.ResetColor();
           break;
         }
