@@ -4,8 +4,6 @@ using KeraLua;
 using Lime.colors;
 using Lime.Core;
 using WhiteText;
-using System.IO.Enumeration;
-using System.Security.Cryptography;
 using Lime.app.calculator;
 namespace Lime.core
 {
@@ -324,21 +322,154 @@ namespace Lime.core
         Thread.Sleep(1000);
         Console.Clear();
       }
+      //Even more code duplication. :D
       public void Addition()
       {
+        try
+        {
+          Console.Clear();
+          Colors.Yellow();
+          Console.Write("Введите первое число > ");
+          Console.ResetColor();
+          int NumberOne = Convert.ToInt16(Console.ReadLine());
 
+          Console.Clear();
+          Colors.Yellow();
+          Console.Write("Введите второе число > ");
+          Console.ResetColor();
+          int NumberTwo = Convert.ToInt16(Console.ReadLine());
+
+          Console.Clear();
+          Colors.Green();
+          Console.WriteLine($"Результат: {NumberOne + NumberTwo}\n");
+          Console.ResetColor();
+
+          Console.CursorVisible = false;
+          Console.Write("Нажмите на клавишу: 'Enter' для продолжения...");
+          Console.ReadKey();
+          Console.Clear();
+        }
+        catch (Exception)
+        {
+          Console.CursorVisible = false;
+          Console.Clear();
+          Colors.Red();
+          Console.WriteLine($"Ошибка: Вы не ввели число!");
+          Console.ResetColor();
+          Thread.Sleep(2000);
+          Console.Clear();
+        }
       }
       public void Subtraction()
       {
+        try
+        {
+          Console.Clear();
+          Colors.Yellow();
+          Console.Write("Введите первое число > ");
+          Console.ResetColor();
+          int NumberOne = Convert.ToInt16(Console.ReadLine());
 
+          Console.Clear();
+          Colors.Yellow();
+          Console.Write("Введите второе число > ");
+          Console.ResetColor();
+          int NumberTwo = Convert.ToInt16(Console.ReadLine());
+
+          Console.Clear();
+          Colors.Green();
+          Console.WriteLine($"Результат: {NumberOne - NumberTwo}");
+          Console.ResetColor();
+
+          Console.CursorVisible = false;
+          Console.Write("Нажмите на клавишу: 'Enter' для прожолжения...");
+          Console.ReadKey();
+          Console.Clear();
+        }
+        catch (Exception)
+        {
+          Console.CursorVisible = false;
+          Console.Clear();
+          Colors.Red();
+          Console.WriteLine($"Ошибка: Вы не ввели число!");
+          Console.ResetColor();
+          Thread.Sleep(2000);
+          Console.Clear();
+        }
       }
       public void Multiplication()
       {
+        try
+        {
+          Console.Clear();
+          Colors.Yellow();
+          Console.Write("Введите первое число > ");
+          Console.ResetColor();
+          int NumberOne = Convert.ToInt16(Console.ReadLine());
 
+          Console.Clear();
+          Colors.Yellow();
+          Console.Write("Введите второе число > ");
+          Console.ResetColor();
+          int NumberTwo = Convert.ToInt16(Console.ReadLine());
+
+          Console.Clear();
+          Colors.Green();
+          Console.WriteLine($"Результат: {NumberOne * NumberTwo}");
+          Console.ResetColor();
+
+          Console.CursorVisible = false;
+          Console.Write("Нажмите на клавишу: 'Enter' для продолжения...");
+          Console.ReadKey();
+          Console.Clear();
+        }
+        catch (Exception)
+        {
+          Console.CursorVisible = false;
+          Console.Clear();
+          Colors.Red();
+          Console.WriteLine($"Ошибка: Вы не ввели число!");
+          Console.ResetColor();
+          Thread.Sleep(2000);
+          Console.Clear();
+        }
       }
       public void Division()
       {
+        try
+        {
+          Console.Clear();
+          Colors.Yellow();
+          Console.Write("Введите первое число > ");
+          Console.ResetColor();
+          int NumberOne = Convert.ToInt16(Console.ReadLine());
 
+          Console.Clear();
+          Colors.Yellow();
+          Console.Write("Введите второе число > ");
+          Console.ResetColor();
+          int NumberTwo = Convert.ToInt16(Console.ReadLine());
+
+          Console.Clear();
+          Colors.Green();
+          Console.WriteLine($"Результат: {NumberOne / NumberTwo}");
+          Console.ResetColor();
+
+          Console.CursorVisible = false;
+          Console.Write("Наэмите на клавишу: 'Enter' для продолжения...");
+          Console.ReadLine();
+          Console.Clear();
+        }
+        catch (Exception)
+        {
+          Console.CursorVisible = false;
+          Console.Clear();
+          Colors.Red();
+          Console.WriteLine($"Ошибка: Вы не ввели число!");
+          Console.ResetColor();
+          Thread.Sleep(2000);
+          Console.Clear();
+        }
       }
     }
   }
