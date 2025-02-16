@@ -76,6 +76,9 @@ namespace Lime.core
           case "logout":
             cmd.Logout();
             break;
+          case "date":
+            cmd.Date();
+            break;
           //System management
           case "poweroff":
             cmd.PowerOff();

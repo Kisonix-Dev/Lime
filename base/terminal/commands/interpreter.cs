@@ -82,6 +82,11 @@ namespace Lime.core
         string filePath = Path.Combine(homeDirectory, "LimeOS", "database", "account", "userdata.json");
         AuthenticationAccount.Authentication(filePath);
       }
+      public void Date()
+      {
+        DateTime CurrentDate = DateTime.Now;
+        Console.WriteLine($"Текущая дата и время: {CurrentDate}");
+      }
       public void PowerOff()
       {
         Console.CursorVisible = false;

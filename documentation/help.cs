@@ -29,6 +29,7 @@ namespace Lime.core
       Console.WriteLine("clear - Очистка терминала.");
       Console.WriteLine("help - Помощь по всем командам.");
       Console.WriteLine("[Command] --help - Помощь по определённой команде.");
+      Console.WriteLine("date - Показать актуальную дату и время.");
       //System management
       Console.WriteLine("poweroff - Выключение операционной системы.");
       //SoftWare 
