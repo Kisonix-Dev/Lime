@@ -208,12 +208,12 @@ namespace Lime.core
           Console.WriteLine($"Файл '{FileName}' успешно создан по пути '{FullPath}");
           Console.ResetColor();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
           Console.CursorVisible = false;
           Console.Clear();
           Console.ForegroundColor = ConsoleColor.Red;
-          Console.WriteLine($"Ошибка при создании файла: '{ex.Message}'");
+          Console.WriteLine($"Пропущен аргумент. Ошибка при создании файла.");
           Console.ResetColor();
         }
         Console.CursorVisible = false;
@@ -257,11 +257,11 @@ namespace Lime.core
           Console.WriteLine($"Содержимое файла: '{FileName}'\n");
           Console.WriteLine(content);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
           Console.Clear();
           Colors.Red();
-          Console.WriteLine($"Ошибка при открытие файла: '{ex.Message}'");
+          Console.WriteLine($"Пропущен аргумент. Ошибка при создании файла.");
           Console.ResetColor();
         }
         Console.CursorVisible = false;
@@ -309,11 +309,11 @@ namespace Lime.core
           Thread.Sleep(1000);
           Console.Clear();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
           Console.Clear();
           Colors.Red();
-          Console.WriteLine($"Ошибка при удаление файла: '{ex.Message}'");
+          Console.WriteLine($"Пропущен аргумент. Ошибка при создании файла.");
           Colors.Red();
           Thread.Sleep(1000);
           Console.Clear();
@@ -359,7 +359,7 @@ namespace Lime.core
           Console.CursorVisible = false;
           Console.Clear();
           Colors.Red();
-          Console.WriteLine($"Ошибка: Вы не ввели число!");
+          Console.WriteLine($"Пропущен аргумент. Введите число.");
           Console.ResetColor();
           Thread.Sleep(2000);
           Console.Clear();
@@ -387,7 +387,7 @@ namespace Lime.core
           Console.ResetColor();
 
           Console.CursorVisible = false;
-          Console.Write("Нажмите на клавишу: 'Enter' для прожолжения...");
+          Console.Write("Нажмите на клавишу: 'Enter' для продолжения...");
           Console.ReadKey();
           Console.Clear();
         }
@@ -396,7 +396,7 @@ namespace Lime.core
           Console.CursorVisible = false;
           Console.Clear();
           Colors.Red();
-          Console.WriteLine($"Ошибка: Вы не ввели число!");
+          Console.WriteLine($"Пропущен аргумент. Введите число.");
           Console.ResetColor();
           Thread.Sleep(2000);
           Console.Clear();
@@ -433,7 +433,7 @@ namespace Lime.core
           Console.CursorVisible = false;
           Console.Clear();
           Colors.Red();
-          Console.WriteLine($"Ошибка: Вы не ввели число!");
+          Console.WriteLine($"Пропущен аргумент. Введите число.");
           Console.ResetColor();
           Thread.Sleep(2000);
           Console.Clear();
@@ -470,7 +470,7 @@ namespace Lime.core
           Console.CursorVisible = false;
           Console.Clear();
           Colors.Red();
-          Console.WriteLine($"Ошибка: Вы не ввели число!");
+          Console.WriteLine($"Пропущен аргумент. Введите число.");
           Console.ResetColor();
           Thread.Sleep(2000);
           Console.Clear();

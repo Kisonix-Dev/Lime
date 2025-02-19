@@ -34,7 +34,7 @@ namespace Lime.core
       Console.WriteLine("poweroff - Выключение операционной системы.");
       //SoftWare 
       Console.WriteLine("whitetext, wt - Открыть текстовой редактор");
-      Console.WriteLine("calc, +,-,*,/ - Открыть калькулятор");
+      Console.WriteLine("calc, +,-,*,/ - Открыть калькулятор\n");
     }
   }
 }
