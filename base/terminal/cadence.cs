@@ -105,6 +105,12 @@ namespace Lime.core
           case "wt":
             cmd.WhiteText();
             break;
+          case "client":
+            cmd.Client();
+            break;
+          case "server":
+            cmd.Server();
+            break;
           default:
             if (string.IsNullOrWhiteSpace(Input)) { }
             else

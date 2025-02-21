@@ -4,6 +4,7 @@ using KeraLua;
 using Lime.colors;
 using Lime.Core;
 using WhiteText;
+using Lime.app.irc.chat;
 using Lime.app.calculator;
 namespace Lime.core
 {
@@ -124,6 +125,16 @@ namespace Lime.core
       {
         Calculator calculator = new Calculator();
         calculator.Calc_Menu();
+      }
+      public void Client()
+      {
+        Client client = new Client()!;
+        client.Client_irc();
+      }
+      public void Server()
+      {
+        Server server = new Server()!;
+        server.Server_irc();
       }
     }
     //Processing options.
