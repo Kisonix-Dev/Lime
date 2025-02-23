@@ -2,9 +2,9 @@
 
 # Lime OS
 
-Lime OS operating system simulator.
-This program was created purely for fun and experiments. Nothing serious.
-Here you will see a lot of shit code, be careful!
+<p>Lime OS operating system simulator.</p>
+<p>This program was created purely for fun and experiments. Nothing serious.</p>
+<p>Here you will see a lot of shit code, be careful!</p>
 
 ## Demonstration of the program
 
