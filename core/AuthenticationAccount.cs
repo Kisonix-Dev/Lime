@@ -18,9 +18,12 @@ namespace Lime.core
       if (users == null || users.Count == 0)
       {
         Console.CursorVisible = false;
+        Console.Clear();
         Colors.Red();
         Console.WriteLine("Не удалось загрузить пользователей или список пуст!");
         Console.ResetColor();
+        Thread.Sleep(2000);
+        CreateNewAccount.Register(filePath);
         return;
       }
 

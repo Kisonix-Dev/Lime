@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/user/github/Lime/Lime.csproj": {}
+    "C:\\Users\\kison\\github\\Lime\\Lime.csproj": {}
   },
   "projects": {
-    "/home/user/github/Lime/Lime.csproj": {
+    "C:\\Users\\kison\\github\\Lime\\Lime.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/user/github/Lime/Lime.csproj",
+        "projectUniqueName": "C:\\Users\\kison\\github\\Lime\\Lime.csproj",
         "projectName": "Lime",
-        "projectPath": "/home/user/github/Lime/Lime.csproj",
-        "packagesPath": "/home/user/.nuget/packages/",
-        "outputPath": "/home/user/github/Lime/obj/",
+        "projectPath": "C:\\Users\\kison\\github\\Lime\\Lime.csproj",
+        "packagesPath": "C:\\Users\\kison\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kison\\github\\Lime\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/user/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\kison\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -69,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

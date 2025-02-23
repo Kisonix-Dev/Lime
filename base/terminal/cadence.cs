@@ -49,6 +49,12 @@ namespace Lime.core
           case "useradd":
             cmd.UserAdd();
             break;
+          case "user -d":
+            cmd.UserDelete();
+            break;
+          case "user --delete":
+            cmd.UserDelete();
+            break;
           //Working with the file system.
           case "touch":
             cmd.Touch();

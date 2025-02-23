@@ -3,9 +3,11 @@ using NLua;
 using KeraLua;
 using Lime.colors;
 using Lime.Core;
+using Newtonsoft.Json;
 using WhiteText;
 using Lime.app.irc.chat;
 using Lime.app.calculator;
+using System.Collections.Generic;
 namespace Lime.core
 {
   //Interpreter for the Cadence terminal.
@@ -57,6 +59,88 @@ namespace Lime.core
         string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         string filePath = Path.Combine(homeDirectory, "LimeOS", "database", "account", "userdata.json");
         CreateNewAccount.Register(filePath);
+      }
+      public void UserDelete()
+      {
+        string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        string filePath = Path.Combine(homeDirectory, "LimeOS", "database", "account", "userdata.json");
+
+        while (true)
+        {
+          Console.CursorVisible = true;
+          Console.Clear();
+          Console.WriteLine("Введите 'exit' для выхода.");
+          Colors.Blue();
+          Console.Write("Введите имя пользователя для удаления: ");
+          Console.ResetColor();
+          string Input = Console.ReadLine()!;
+
+          if (File.Exists(filePath))
+          {
+            var jsonData = File.ReadAllText(filePath);
+            var users = JsonConvert.DeserializeObject<List<User>>(jsonData);
+
+            if (users != null)
+            {
+              var userToRemove = users.FirstOrDefault(u => u.Username == Input);
+              if (userToRemove != null)
+              {
+                users.Remove(userToRemove);
+                File.WriteAllText(filePath, JsonConvert.SerializeObject(users));
+
+                Console.CursorVisible = false;
+                Console.Clear();
+                Colors.Green();
+                Console.WriteLine($"Пользователь {Input} успешно удален.");
+                Console.ResetColor();
+                Thread.Sleep(2000);
+                Console.Clear();
+                return;
+              }
+              if (string.IsNullOrWhiteSpace(Input))
+              {
+                Console.CursorVisible = false;
+                Console.Clear();
+                Colors.Red();
+                Console.WriteLine("Пропущен аргумент. Введите имя пользователя!");
+                Console.ResetColor();
+                Thread.Sleep(2000);
+                Console.Clear();
+              }
+              else
+              {
+                if (Input == "exit")
+                {
+                  Console.CursorVisible = false;
+                  Console.Clear();
+                  Colors.Yellow();
+                  Console.WriteLine("Выход...");
+                  Thread.Sleep(2000);
+                  Console.Clear();
+                  return;
+                }
+                Console.CursorVisible = false;
+                Console.Clear();
+                Colors.Red();
+                Console.WriteLine($"Пользователь {Input} не найден.");
+                Console.ResetColor();
+                Thread.Sleep(2000);
+                Console.Clear();
+              }
+            }
+          }
+          else
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Файл с данными пользователей не найден.");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            return;
+          }
+        }
       }
       public void Clear()
       {

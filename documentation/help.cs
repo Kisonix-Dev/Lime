@@ -18,6 +18,7 @@ namespace Lime.core
       Console.WriteLine("who - Активный пользователь.");
       //User Managenet 
       Console.WriteLine("useradd - Создание нового пользователя.");
+      Console.WriteLine("user -d, --delete - Удаление пользователя ");
       //Working witch the file system
       Console.WriteLine("mkdir - [Название нового каталога] - Создание нового каталога.");
       Console.WriteLine("touch [Имя файла] - Создание текстового файла");
