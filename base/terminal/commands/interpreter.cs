@@ -8,6 +8,8 @@ using WhiteText;
 using Lime.app.irc.chat;
 using Lime.app.calculator;
 using System.Collections.Generic;
+using Newtonsoft.Json.Serialization;
+using System.Diagnostics;
 namespace Lime.core
 {
   //Interpreter for the Cadence terminal.
@@ -142,6 +144,123 @@ namespace Lime.core
           }
         }
       }
+      class User
+      {
+        public int Id { get; set; }
+        public string? Username { get; set; }
+        public string? Password { get; set; }
+      }
+      public void UserRename()
+      {
+        string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        string filePath = Path.Combine(homeDirectory, "LimeOS", "database", "account", "userdata.json");
+
+        List<User> users = LoadUsers(filePath);
+
+        while (true)
+        {
+          string oldUsername;
+
+          while (true)
+          {
+            Console.CursorVisible = true;
+            Console.Clear();
+            Console.WriteLine("Введите 'exit' для выхода.");
+            Colors.Blue();
+            Console.Write("Введите имя пользователя, которое нужно изменить: ");
+            Console.ResetColor();
+            oldUsername = Console.ReadLine()!;
+
+            switch (oldUsername)
+            {
+              case "exit":
+                Console.CursorVisible = false;
+                Colors.Yellow();
+                Console.WriteLine("Выход...");
+                Console.ResetColor();
+                Thread.Sleep(2000);
+                Console.Clear();
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(oldUsername))
+            {
+              break;
+            }
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Вы пропустили аргумент! Пожалуйста, введите имя пользователя.");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+          }
+
+          User userToChange = users.Find(u => u.Username!.Equals(oldUsername))!;
+
+          if (userToChange != null)
+          {
+            string newUsername;
+
+            while (true)
+            {
+              Console.CursorVisible = true;
+              Console.Clear();
+              Colors.Blue();
+              Console.Write("Введите новое имя пользователя: ");
+              Console.ResetColor();
+              newUsername = Console.ReadLine()!;
+
+              if (!string.IsNullOrWhiteSpace(newUsername))
+              {
+                break;
+              }
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Red();
+              Console.WriteLine("Вы пропустили аргумент! Пожалуйста, введите новое имя пользователя.");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+            }
+
+            userToChange.Username = newUsername;
+            SaveUsers(filePath, users);
+
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Green();
+            Console.WriteLine("Имя пользователя успешно изменено!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            return;
+          }
+          else
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Пользователь с таким именем не найден!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+          }
+        }
+      }
+
+      static List<User> LoadUsers(string filePath)
+      {
+        if (!File.Exists(filePath))
+        {
+          return new List<User>();
+        }
+        string jsondata = File.ReadAllText(filePath);
+        return JsonConvert.DeserializeObject<List<User>>(jsondata) ?? new List<User>();
+      }
+      static void SaveUsers(string filePath, List<User> users)
+      {
+        string jsonData = JsonConvert.SerializeObject(users, Formatting.Indented);
+        File.WriteAllText(filePath, jsonData);
+      }
+
       public void Clear()
       {
         Console.Clear();

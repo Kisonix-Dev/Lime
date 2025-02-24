@@ -8,7 +8,7 @@ namespace Lime.core
     public void DocHelp()
     {
       Console.Clear();
-      Console.WriteLine("Использование: [Command], [Option], [Arguments]");
+      Console.WriteLine("Использование: [Command], [Option], [Arguments].");
       Colors.Yellow();
       Console.WriteLine("Аргументы не всегда обязательны к использованию.\n");
       Console.ResetColor();
@@ -18,10 +18,11 @@ namespace Lime.core
       Console.WriteLine("who - Активный пользователь.");
       //User Managenet 
       Console.WriteLine("useradd - Создание нового пользователя.");
-      Console.WriteLine("user -d, --delete - Удаление пользователя ");
+      Console.WriteLine("user -d, --delete - Удаление пользователя.");
+      Console.WriteLine("user -r, --rename - Изменение имя пользователя.");
       //Working witch the file system
       Console.WriteLine("mkdir - [Название нового каталога] - Создание нового каталога.");
-      Console.WriteLine("touch [Имя файла] - Создание текстового файла");
+      Console.WriteLine("touch [Имя файла] - Создание текстового файла.");
       Console.WriteLine("cat [Имя файла] - Вывести содержимое текстового файла на экран терминала.");
       Console.WriteLine("rm [Имя файла] - Удаление текстового файла.");
       //Lua scriots 
@@ -34,7 +35,7 @@ namespace Lime.core
       //System management
       Console.WriteLine("poweroff - Выключение операционной системы.");
       //SoftWare 
-      Console.WriteLine("whitetext, wt - Открыть текстовой редактор");
+      Console.WriteLine("whitetext, wt - Открыть текстовой редактор.");
       Console.WriteLine("calc, +,-,*,/ - Открыть калькулятор\n");
     }
   }
