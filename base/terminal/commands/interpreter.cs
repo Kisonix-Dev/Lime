@@ -10,6 +10,8 @@ using Lime.app.calculator;
 using System.Collections.Generic;
 using Newtonsoft.Json.Serialization;
 using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
+using System.Net;
 namespace Lime.core
 {
   //Interpreter for the Cadence terminal.
@@ -359,187 +361,382 @@ namespace Lime.core
     //Processing arguments.
     public class Arguments
     {
-      public void MkdirA()
+      public void Mkdir()
       {
-        Colors.Cyan();
-        Console.Write("Название новой директории > ");
-        Console.ResetColor();
-        string NameDirectory = Console.ReadLine()!;
-
-        if (string.IsNullOrWhiteSpace(NameDirectory))
+        while (true)
         {
+          Console.CursorVisible = true;
           Console.Clear();
-          Colors.Red();
-          Console.WriteLine("Пропущен аргумент. Директория не создана!");
-          Colors.Gray();
-          Console.WriteLine("Введите 'mkdir --help' для подробной информации по этой команде.\n");
+          Colors.Cyan();
+          Console.Write("Введите название для новой директории > ");
           Console.ResetColor();
-          Thread.Sleep(1000);
-        }
-        else
-        {
-          string HomeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-          string NewDirectoryPath = Path.Combine(HomeDirectory, "LimeOS", "main", "root", "home", "user", NameDirectory);
 
-          Directory.CreateDirectory(NewDirectoryPath);
-          Console.Clear();
-          Colors.Green();
-          Console.WriteLine($"Новая директория {NameDirectory} успешно создана!");
+          string NameDirectory = Console.ReadLine()!;
+
+          switch (NameDirectory)
+          {
+            case "exit":
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Yellow();
+              Console.WriteLine("Выход...");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+          }
+
+          if (string.IsNullOrWhiteSpace(NameDirectory))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Пропущен аргумент. Директория не создана!");
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+          else
+          {
+            string HomeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            string NewDirectoryPath = Path.Combine(HomeDirectory, "LimeOS", "main", "root", "home", "user", NameDirectory);
+
+            try
+            {
+              Directory.CreateDirectory(NewDirectoryPath);
+
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Green();
+              Console.WriteLine($"Новая директория {NameDirectory} успешно создана!");
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+            }
+            catch (Exception ex)
+            {
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Red();
+              Console.WriteLine($"Ошибка при создании новой директории: '{ex.Message}'");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              break;
+            }
+          }
         }
       }
       public void Touch()
       {
-        Console.Clear();
-
         string HomeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         string NewDirectoryPath = Path.Combine(HomeDirectory, "LimeOS", "main", "root", "home", "user");
 
-        Colors.Blue();
-        Console.Write("Введите имя файла > ");
-        Console.ResetColor();
-
-        string FileName = Console.ReadLine()!;
-        string FullPath = Path.Combine(NewDirectoryPath, FileName);
-
-        try
+        while (true)
         {
-          if (!Directory.Exists(NewDirectoryPath))
-          {
-            Directory.CreateDirectory(NewDirectoryPath);
-          }
-
-          using (StreamWriter writer = new StreamWriter(FullPath))
-          {
-            Console.WriteLine("\nВведите текст (для завершения нажмите дважны на 'Enter'.):\n");
-            string line;
-            while ((line = Console.ReadLine()!) != "")
-            {
-              writer.WriteLine(line);
-            }
-          }
-          Console.CursorVisible = false;
-          Console.ForegroundColor = ConsoleColor.Green;
-          Console.WriteLine($"Файл '{FileName}' успешно создан по пути '{FullPath}");
-          Console.ResetColor();
-        }
-        catch (Exception)
-        {
-          Console.CursorVisible = false;
+          Console.CursorVisible = true;
           Console.Clear();
-          Console.ForegroundColor = ConsoleColor.Red;
-          Console.WriteLine($"Пропущен аргумент. Ошибка при создании файла.");
+          Colors.Blue();
+          Console.Write("Введите имя для нового файла > ");
           Console.ResetColor();
+
+          string FileName = Console.ReadLine()!;
+          string FullPath = Path.Combine(NewDirectoryPath, FileName);
+
+          switch (FileName)
+          {
+            case "exit":
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Yellow();
+              Console.WriteLine("Выход...");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+          }
+
+          if (string.IsNullOrWhiteSpace(FileName))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Пропущен аргумент, Введите имя файла!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+
+          try
+          {
+            if (!Directory.Exists(NewDirectoryPath))
+            {
+              Directory.CreateDirectory(NewDirectoryPath);
+            }
+
+            using (StreamWriter writer = new StreamWriter(FullPath))
+            {
+              Console.WriteLine("\nВведите текст (для завершения нажмите дважны на 'Enter'.):\n");
+              string line;
+              while ((line = Console.ReadLine()!) != "")
+              {
+                writer.WriteLine(line);
+              }
+            }
+            Console.CursorVisible = false;
+            Colors.Green();
+            Console.WriteLine($"Файл '{FileName}' успешно создан по пути '{FullPath}");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            return;
+          }
+          catch (Exception ex)
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Ошибка при создании файла: '{ex.Message}'");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            break;
+          }
         }
-        Console.CursorVisible = false;
-        Colors.Green();
-        Console.WriteLine("\nНажмите любую клавишу для продолжения...");
-        Console.ResetColor();
-        Console.ReadKey();
-        Thread.Sleep(1000);
-        Console.Clear();
       }
       public void Cat()
       {
-        Console.Clear();
 
         string HomeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         string NewDirectoryPath = Path.Combine(HomeDirectory, "LimeOS", "main", "root", "home", "user");
 
-        Colors.Blue();
-        Console.Write("Введите имя файла > ");
-        Console.ResetColor();
-
-        string FileName = Console.ReadLine()!;
-        string FullPath = Path.Combine(NewDirectoryPath, FileName);
-
-        if (!File.Exists(FullPath))
+        while (true)
         {
-          Console.CursorVisible = false;
+          Console.CursorVisible = true;
           Console.Clear();
-          Colors.Red();
-          Console.WriteLine($"Файл: '{FileName}' не найден!");
+          Colors.Blue();
+          Console.Write("Введите имя файла > ");
           Console.ResetColor();
-          Thread.Sleep(1000);
-          Console.Clear();
-          return;
-        }
 
-        try
-        {
-          string content = File.ReadAllText(FullPath);
-          Console.Clear();
-          Console.WriteLine($"Содержимое файла: '{FileName}'\n");
-          Console.WriteLine(content);
+          string FileName = Console.ReadLine()!;
+          string FullPath = Path.Combine(NewDirectoryPath, FileName);
+
+          switch (FileName)
+          {
+            case "exit":
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Yellow();
+              Console.WriteLine("Выход...");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+          }
+
+          if (string.IsNullOrWhiteSpace(FileName))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Пропущен аргумент, введите имя файла!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+
+          if (!File.Exists(FullPath))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine($"Файл: '{FileName}' не найден!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+
+          try
+          {
+            string content = File.ReadAllText(FullPath);
+
+            Console.CursorVisible = false;
+            Console.Clear();
+            Console.WriteLine($"Содержимое файла: '{FileName}'\n");
+            Console.WriteLine(content);
+            Colors.Green();
+            Console.WriteLine("\nНажмите на клавишу: 'Enter' для выхода.");
+            Console.ResetColor();
+            Console.ReadKey();
+            Console.Clear();
+          }
+          catch (Exception ex)
+          {
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine($"Ошибка при создании файла: '{ex.Message}'");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            break;
+          }
         }
-        catch (Exception)
+      }
+      public void RmD()
+      {
+        string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        string NewDirectoryPath = Path.Combine(homeDirectory, "LimeOS", "main", "root", "home", "user");
+
+        while (true)
         {
+          Console.CursorVisible = true;
           Console.Clear();
-          Colors.Red();
-          Console.WriteLine($"Пропущен аргумент. Ошибка при создании файла.");
+          Colors.Blue();
+          Console.Write("Введите имя директории для удаления > ");
           Console.ResetColor();
+
+          string DirectoryName = Console.ReadLine()!;
+          string FullPath = Path.Combine(NewDirectoryPath, DirectoryName);
+
+          switch (DirectoryName)
+          {
+            case "exit":
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Yellow();
+              Console.WriteLine("Выход...");
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+          }
+
+          if (string.IsNullOrWhiteSpace(DirectoryName))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Пропущен аргумент, директория не удалена!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+
+          if (!Directory.Exists(FullPath))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine($"Директория: '{DirectoryName}' не найдена!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+
+          try
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Directory.Delete(FullPath);
+            Colors.Green();
+            Console.WriteLine($"Директория: '{DirectoryName}' успешно удалена!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            return;
+          }
+          catch (Exception ex)
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine($"Ошибка при удалении директории: '{ex.Message}'");
+            Thread.Sleep(2000);
+            Console.Clear();
+            break;
+          }
         }
-        Console.CursorVisible = false;
-        Colors.Green();
-        Console.WriteLine("\nНажмите на клавишу 'Enter' для продолжения!");
-        Console.ResetColor();
-        Console.ReadKey();
-        Thread.Sleep(1000);
-        Console.Clear();
       }
       public void Rm()
       {
-        Console.Clear();
-
         string HomeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         string NewDirectoryPath = Path.Combine(HomeDirectory, "LimeOS", "main", "root", "home", "user");
 
-        Colors.Blue();
-        Console.Write("Введите имя файла > ");
-        Console.ResetColor();
-
-        string FileName = Console.ReadLine()!;
-        string FullPath = Path.Combine(NewDirectoryPath, FileName);
-
-        if (!File.Exists(FullPath))
+        while (true)
         {
-          Console.CursorVisible = false;
+          Console.CursorVisible = true;
           Console.Clear();
-          Colors.Red();
-          Console.WriteLine($"Файл: '{FileName}' не найден!");
+          Colors.Blue();
+          Console.Write("Введите имя файла > ");
           Console.ResetColor();
-          Thread.Sleep(1000);
-          Console.Clear();
-          return;
-        }
 
-        try
-        {
-          Console.CursorVisible = false;
-          Console.Clear();
-          File.Delete(FullPath);
-          Colors.Green();
-          Console.WriteLine($"Файл: '{FileName}' успешно удалён.");
-          Console.ResetColor();
-          Thread.Sleep(1000);
-          Console.Clear();
+          string FileName = Console.ReadLine()!;
+          string FullPath = Path.Combine(NewDirectoryPath, FileName);
+
+          switch (FileName)
+          {
+            case "exit":
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Yellow();
+              Console.WriteLine("Выход...");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+          }
+
+          if (string.IsNullOrWhiteSpace(FileName))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Пропущен аргумент, введите имя файла!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+
+          if (!File.Exists(FullPath))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine($"Файл: '{FileName}' не найден!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+
+          try
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            File.Delete(FullPath);
+            Colors.Green();
+            Console.WriteLine($"Файл: '{FileName}' успешно удалён.");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            return;
+          }
+          catch (Exception ex)
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine($"Ошибка при создании файла: '{ex.Message}'");
+            Thread.Sleep(2000);
+            Console.Clear();
+            break;
+          }
         }
-        catch (Exception)
-        {
-          Console.Clear();
-          Colors.Red();
-          Console.WriteLine($"Пропущен аргумент. Ошибка при создании файла.");
-          Colors.Red();
-          Thread.Sleep(1000);
-          Console.Clear();
-        }
-        Console.CursorVisible = false;
-        Console.Clear();
-        Colors.Green();
-        Console.WriteLine("Нажмите на 'Enter' для продолжения!");
-        Console.ResetColor();
-        Console.ReadKey();
-        Thread.Sleep(1000);
-        Console.Clear();
       }
       //Even more code duplication. :D
       public void Addition()

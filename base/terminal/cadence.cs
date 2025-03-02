@@ -9,6 +9,7 @@ namespace Lime.core
   class Cadence
   {
     private readonly string PC = "PC-0";
+    private readonly string CurrentDirectory = "/";
     public void Terminal()
     {
       Console.Title = "Lime";
@@ -19,7 +20,6 @@ namespace Lime.core
       {
         Console.CursorVisible = true;
         user = AuthenticationAccount.GetAuthenticatedUser();
-        string CurrentDirectory = "/";
         Colors.Cyan();
         Console.Write($"{user!.Username}@{PC}:{CurrentDirectory}$ ");
         Console.ResetColor();
@@ -71,8 +71,11 @@ namespace Lime.core
           case "rm":
             cmd.Rm();
             break;
+          case "rmd":
+            cmd.RmD();
+            break;
           case "mkdir":
-            cmd.MkdirA();
+            cmd.Mkdir();
             break;
           //Lua Scripts.
           case "test": //Soon...
@@ -133,12 +136,12 @@ namespace Lime.core
             }
             continue;
         }
-        /*Create command - Rename Name account.
-         Create command - Delete current account.
-         Create command - Create New file & directory & delete.
-         Create command - Rename file & directory.
-         Create command - ls, cd, cat...
-         Create more...*/
+        /*
+        Create command - Copy file & directory
+        (Копирование файла из одной директории, в другую директорию. Копирование директории из одной директории в другую директорию).
+        Create command - Rename file & directory.
+        Create command - ls, cd.
+        Create more...*/
       }
     }
   }

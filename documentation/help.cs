@@ -25,6 +25,7 @@ namespace Lime.core
       Console.WriteLine("touch [Имя файла] - Создание текстового файла.");
       Console.WriteLine("cat [Имя файла] - Вывести содержимое текстового файла на экран терминала.");
       Console.WriteLine("rm [Имя файла] - Удаление текстового файла.");
+      Console.WriteLine("rmd [Имя директории] - Удаление директории.");
       //Lua scriots 
       Console.WriteLine("test - Тестовый скрипт...");
       //Other commands 
