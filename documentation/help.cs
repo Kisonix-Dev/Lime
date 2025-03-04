@@ -26,9 +26,13 @@ namespace Lime.core
       Console.WriteLine("cat [Имя файла] - Вывести содержимое текстового файла на экран терминала.");
       Console.WriteLine("rm [Имя файла] - Удаление текстового файла.");
       Console.WriteLine("rmd [Имя директории] - Удаление директории.");
-      //Lua scriots 
+      Console.WriteLine("mpd [Имя директории], [Имя новой директории] - Перемещение директории.");
+      Console.WriteLine("mp [Имя файла], [Имя директории] - Перемещение файла в директорию.");
+      Console.WriteLine("cpd [Имя директории], [Имя новой директории] - Копирование директории.");
+      Console.WriteLine("cp [Имя файла], [Имя директории] - Копирование файла в директорию.");
+      //Lua scripts 
       Console.WriteLine("test - Тестовый скрипт...");
-      //Other commands 
+      //Other commands
       Console.WriteLine("clear - Очистка терминала.");
       Console.WriteLine("help - Помощь по всем командам.");
       Console.WriteLine("[Command] --help - Помощь по определённой команде.");

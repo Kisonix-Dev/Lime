@@ -12,6 +12,8 @@ using Newtonsoft.Json.Serialization;
 using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 using System.Net;
+using System.Drawing;
+using System.Data;
 namespace Lime.core
 {
   //Interpreter for the Cadence terminal.
@@ -60,8 +62,10 @@ namespace Lime.core
         Console.ResetColor();
         Thread.Sleep(1000);
         Console.Clear();
+
         string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         string filePath = Path.Combine(homeDirectory, "LimeOS", "database", "account", "userdata.json");
+
         CreateNewAccount.Register(filePath);
       }
       public void UserDelete()
@@ -284,8 +288,10 @@ namespace Lime.core
         Console.ResetColor();
         Thread.Sleep(1000);
         Console.Clear();
+
         string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         string filePath = Path.Combine(homeDirectory, "LimeOS", "database", "account", "userdata.json");
+
         AuthenticationAccount.Authentication(filePath);
       }
       public void Date()
@@ -618,7 +624,7 @@ namespace Lime.core
             Console.CursorVisible = false;
             Console.Clear();
             Colors.Red();
-            Console.WriteLine("Пропущен аргумент, директория не удалена!");
+            Console.WriteLine("Пропущен аргумент, введите имя директории которую нужно удалить!");
             Console.ResetColor();
             Thread.Sleep(2000);
             Console.Clear();
@@ -636,8 +642,7 @@ namespace Lime.core
             Console.Clear();
             continue;
           }
-
-          try
+          if (IsDirectoryEmpty(FullPath))
           {
             Console.CursorVisible = false;
             Console.Clear();
@@ -649,16 +654,58 @@ namespace Lime.core
             Console.Clear();
             return;
           }
-          catch (Exception ex)
+          else
           {
-            Console.CursorVisible = false;
-            Console.Clear();
-            Colors.Red();
-            Console.WriteLine($"Ошибка при удалении директории: '{ex.Message}'");
-            Thread.Sleep(2000);
-            Console.Clear();
-            break;
+            while (true)
+            {
+              Console.CursorVisible = true;
+              Console.Clear();
+              Colors.Yellow();
+              Console.Write("Директория не пустая, вы точно? хотите удалить директорию: (yes) , (no) > ");
+              Console.ResetColor();
+
+              string Input = Console.ReadLine()!;
+
+              if (string.IsNullOrWhiteSpace(Input))
+              {
+                Console.CursorVisible = false;
+                Console.Clear();
+                Colors.Red();
+                Console.WriteLine("Вы пропустили аргумент! Введите: (yes) или (no)!");
+                Console.ResetColor();
+                Thread.Sleep(2000);
+                Console.Clear();
+              }
+
+              switch (Input.ToLower())
+              {
+                case "yes":
+                  Console.CursorVisible = false;
+                  Console.Clear();
+                  Directory.Delete(FullPath, true);
+                  Colors.Green();
+                  Console.WriteLine($"Директория: '{DirectoryName}' Со всем содержимым, успешно удалена!");
+                  Console.ResetColor();
+                  Thread.Sleep(2000);
+                  Console.Clear();
+                  return;
+                case "no":
+                  Console.CursorVisible = false;
+                  Console.Clear();
+                  Colors.Yellow();
+                  Console.WriteLine("Директория не удалена! Выход...");
+                  Console.ResetColor();
+                  Thread.Sleep(2000);
+                  Console.Clear();
+                  return;
+              }
+            }
           }
+        }
+        //Method to check if a directory is empty.
+        static bool IsDirectoryEmpty(string FullPath)
+        {
+          return Directory.GetFiles(FullPath).Length == 0 && Directory.GetDirectories(FullPath).Length == 0;
         }
       }
       public void Rm()
@@ -737,6 +784,188 @@ namespace Lime.core
             break;
           }
         }
+      }
+      public void MoveDirectory()
+      {
+        string HomeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        string CurrentDirectoryPath = Path.Combine(HomeDirectory, "LimeOS", "main", "root", "home", "user");
+
+        while (true)
+        {
+          Console.CursorVisible = true;
+          Console.Clear();
+          Colors.Blue();
+          Console.Write("Введите имя директории для перемещения > ");
+          Console.ResetColor();
+
+          string DirectoryName = Console.ReadLine()!;
+          string FullPath = Path.Combine(CurrentDirectoryPath, DirectoryName);
+
+          switch (DirectoryName)
+          {
+            case "exit":
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Yellow();
+              Console.WriteLine("Выход...");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+          }
+
+          if (string.IsNullOrWhiteSpace(DirectoryName))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Вы пропустили аргумент, введите имя директории!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+
+          Console.Clear();
+          Colors.Blue();
+          Console.Write("Введите имя директории куда вы хотите переместить выбранную директорию > ");
+          Console.ResetColor();
+
+          string DestinationDirectoryName = Console.ReadLine()!;
+          string DestinationPath = Path.Combine(CurrentDirectoryPath, DestinationDirectoryName, DirectoryName);
+
+          switch (DestinationDirectoryName)
+          {
+            case "exit":
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Yellow();
+              Console.WriteLine("Выход...");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+          }
+
+          if (string.IsNullOrWhiteSpace(DestinationDirectoryName))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Вы пропустили аргумент, введите имя директории!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+
+          if (!Directory.Exists(FullPath))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Исходная директория не существует!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+
+          if (!Directory.Exists(Path.Combine(CurrentDirectoryPath, DestinationDirectoryName)))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Yellow();
+            Console.WriteLine("Целевая директория не существует. Создание новой директории...");
+            Console.ResetColor();
+
+            Directory.CreateDirectory(Path.Combine(CurrentDirectoryPath, DestinationDirectoryName));
+
+            Thread.Sleep(2000);
+            Console.Clear();
+            Colors.Green();
+            Console.WriteLine("Новая директория успешно создана!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            return;
+          }
+
+          try
+          {
+            if (Directory.Exists(DestinationPath))
+            {
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Yellow();
+              Console.WriteLine("Целевая диреткория уже существует. Удаление старой директории...");
+
+              Directory.Delete(DestinationPath, true);
+
+              Thread.Sleep(2000);
+              Console.Clear();
+              Colors.Green();
+              Console.WriteLine("Старая директория успешно удалена!");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+            }
+
+            Directory.Move(FullPath, DestinationPath);
+
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Green();
+            Console.WriteLine("Директория успешно перемещена!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            return;
+          }
+          catch (Exception ex)
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine($"Ошибка при перемещении директории: '{ex.Message}'");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            break;
+          }
+        }
+      }
+      //Move logic for Directory.
+      private static void MoveAll(string sourceDir, string targetDir)
+      {
+        Directory.CreateDirectory(targetDir);
+
+        foreach (string file in Directory.GetFiles(sourceDir))
+        {
+          string destFile = Path.Combine(targetDir, Path.GetFileName(file));
+          File.Move(file, destFile);
+        }
+
+        foreach (string dir in Directory.GetDirectories(sourceDir))
+        {
+          string destDir = Path.Combine(targetDir, Path.GetFileName(dir));
+          MoveAll(dir, destDir);
+        }
+
+        Directory.Delete(sourceDir);
+      }
+      public void MoveFile()
+      {
+        //Soon... Move file in new Directory.
+      }
+      public void CopyDirectory()
+      {
+        //Soon... Copy Directory in new directory.
+      }
+      public void CopyFile()
+      {
+        //Soon... Copy file in new directory.
       }
       //Even more code duplication. :D
       public void Addition()

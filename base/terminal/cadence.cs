@@ -71,6 +71,18 @@ namespace Lime.core
           case "rm":
             cmd.Rm();
             break;
+          case "mpd":
+            cmd.MoveDirectory();
+            break;
+          case "mp":
+            cmd.MoveFile();
+            break;
+          case "cpd":
+            cmd.CopyDirectory();
+            break;
+          case "cp":
+            cmd.CopyFile();
+            break;
           case "rmd":
             cmd.RmD();
             break;
@@ -131,7 +143,7 @@ namespace Lime.core
             else
             {
               Colors.Red();
-              Console.WriteLine($"{Input}: Команда не найдена");
+              Console.WriteLine($"{Input}: Команда не найдена!");
               Console.ResetColor();
             }
             continue;
