@@ -35,9 +35,10 @@ namespace Lime.core
         if (string.IsNullOrWhiteSpace(username))
         {
           Console.CursorVisible = false;
+          Console.Clear();
           Colors.Red();
           Console.WriteLine("Поле для ввода не должно быть пустым!");
-          Thread.Sleep(1000);
+          Thread.Sleep(2000);
           Console.Clear();
         }
         else
@@ -63,10 +64,11 @@ namespace Lime.core
         if (string.IsNullOrWhiteSpace(password))
         {
           Console.CursorVisible = false;
+          Console.Clear();
           Colors.Red();
           Console.WriteLine("Поле для ввода не должно быть пустым!");
           Console.ResetColor();
-          Thread.Sleep(1000);
+          Thread.Sleep(2000);
           Console.Clear();
         }
         else

@@ -41,14 +41,16 @@ namespace Lime.core
           Colors.Blue();
           Console.Write("Введите имя > ");
           Console.ResetColor();
+
           username = Console.ReadLine()!;
 
           if (string.IsNullOrWhiteSpace(username))
           {
             Console.CursorVisible = false;
+            Console.Clear();
             Colors.Red();
             Console.WriteLine("Поле для ввода не должно быть пустым!");
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             Console.Clear();
           }
           else
@@ -70,15 +72,17 @@ namespace Lime.core
           Colors.Blue();
           Console.Write("Введите пароль > ");
           Console.ResetColor();
+
           password = Console.ReadLine()!;
 
           if (string.IsNullOrWhiteSpace(password))
           {
             Console.CursorVisible = false;
+            Console.Clear();
             Colors.Red();
             Console.WriteLine("Поле для ввода не должно быть пустым!");
             Console.ResetColor();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             Console.Clear();
           }
           else
