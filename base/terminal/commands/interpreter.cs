@@ -1273,7 +1273,146 @@ namespace Lime.core
       }
       public void CopyFile()
       {
-        //Soon... Copy file in new directory.
+        string HomeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        string CurrentFilePath = Path.Combine(HomeDirectory, "LimeOS", "main", "root", "home", "user");
+
+        while (true)
+        {
+          Console.CursorVisible = true;
+          Console.Clear();
+          Colors.Blue();
+          Console.Write("Введите имя вайла для перемещения > ");
+          Console.ResetColor();
+
+          string FileName = Console.ReadLine()!;
+          string FullPath = Path.Combine(CurrentFilePath, FileName);
+
+          switch (FileName)
+          {
+            case "exit":
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Yellow();
+              Console.WriteLine("Выход...");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+          }
+
+          if (string.IsNullOrWhiteSpace(FileName))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Вы пропустили аргумент, введите имя файла!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            return;
+          }
+
+          Console.Clear();
+          Colors.Blue();
+          Console.Write("Введите имя Директории куда вы хотите скопировать выбранный файл > ");
+          Console.ResetColor();
+
+          string DestinationDirectoryName = Console.ReadLine()!;
+          string DestinationPath = Path.Combine(CurrentFilePath, DestinationDirectoryName, FileName);
+
+          switch (DestinationDirectoryName)
+          {
+            case "exit":
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Yellow();
+              Console.WriteLine("Выход...");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+          }
+
+          if (string.IsNullOrWhiteSpace(DestinationDirectoryName))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Вы пропустили аргумент, введите имя директории!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+
+          if (!File.Exists(FullPath))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Исходный файл не существует");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+
+          if (!Directory.Exists(Path.Combine(CurrentFilePath, DestinationDirectoryName)))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Yellow();
+            Console.WriteLine("Целевая директория не существует. Создание новой директории...");
+            Console.ResetColor();
+
+            Directory.CreateDirectory(Path.Combine(CurrentFilePath, DestinationDirectoryName));
+
+            Thread.Sleep(2000);
+            Console.Clear();
+            Colors.Green();
+            Console.WriteLine("Новая директория успешно создана!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            return;
+          }
+
+          try
+          {
+            if (File.Exists(DestinationPath))
+            {
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Yellow();
+              Console.WriteLine("Файл уже существует в целевой директории, Перезапись файла...");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+            }
+
+            File.Copy(FullPath, DestinationPath, true);
+
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Green();
+            Console.WriteLine("Файл успешно скопирован!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            return;
+          }
+          catch (Exception ex)
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine($"Ошиюка при копирование файла: '{ex.Message}'");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            break;
+          }
+        }
       }
       //Even more code duplication. :D
       public void Addition()

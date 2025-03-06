@@ -149,8 +149,6 @@ namespace Lime.core
             continue;
         }
         /*
-        Create command - Copy file & directory
-        (Копирование файла из одной директории, в другую директорию. Копирование директории из одной директории в другую директорию).
         Create command - Rename file & directory.
         Create command - ls, cd.
         Create more...*/
