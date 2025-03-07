@@ -89,6 +89,18 @@ namespace Lime.core
           case "mkdir":
             cmd.Mkdir();
             break;
+          case "directory -r":
+            cmd.DirectoryR();
+            break;
+          case "directory --rename":
+            cmd.DirectoryR();
+            break;
+          case "file -r":
+            cmd.FileR();
+            break;
+          case "file --rename":
+            cmd.FileR();
+            break;
           //Lua Scripts.
           case "test": //Soon...
             cmd.Test();

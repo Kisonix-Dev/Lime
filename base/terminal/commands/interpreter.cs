@@ -1414,6 +1414,239 @@ namespace Lime.core
           }
         }
       }
+      public void DirectoryR()
+      {
+        string HomeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        string CurrentDirectoryPath = Path.Combine(HomeDirectory, "LimeOS", "main", "root", "home", "user");
+
+        while (true)
+        {
+          Console.CursorVisible = true;
+          Console.Clear();
+          Colors.Blue();
+          Console.Write("Введите текущее имя директории > ");
+          Console.ResetColor();
+
+          string oldDirectoryName = Console.ReadLine()!;
+
+          switch (oldDirectoryName)
+          {
+            case "exit":
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Yellow();
+              Console.WriteLine("Выход...");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+          }
+
+          if (string.IsNullOrWhiteSpace(oldDirectoryName))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Вы пропустили аргумент, введите имя директории!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+
+          Console.Clear();
+          Colors.Blue();
+          Console.Write("Введите новое имя для директории > ");
+          Console.ResetColor();
+
+          string newDirectoryName = Console.ReadLine()!;
+
+          switch (newDirectoryName)
+          {
+            case "exit":
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Yellow();
+              Console.WriteLine("Выход...");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+          }
+
+          if (string.IsNullOrWhiteSpace(newDirectoryName))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Вы пропустили аргумент, введите новое имя для директории!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+
+          Console.Clear();
+
+          string oldDirectoryPath = Path.Combine(CurrentDirectoryPath, oldDirectoryName);
+          string newDirectoryPath = Path.Combine(CurrentDirectoryPath, newDirectoryName);
+
+          if (Directory.Exists(oldDirectoryPath))
+          {
+            try
+            {
+              Directory.Move(oldDirectoryPath, newDirectoryPath);
+
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Green();
+              Console.WriteLine($"Диреткория успешно переименована в: '{newDirectoryName}'");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+            }
+            catch (Exception ex)
+            {
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Red();
+              Console.WriteLine($"Ошибка при переименовании директории: '{ex.Message}'");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              break;
+            }
+          }
+          else
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine($"Директория с имененм: '{oldDirectoryName}' не существует.");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+        }
+      }
+      public void FileR()
+      {
+        string HomeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        string CurrentFilePath = Path.Combine(HomeDirectory, "LimeOS", "main", "root", "home", "user");
+
+        while (true)
+        {
+          Console.CursorVisible = true;
+          Console.Clear();
+          Colors.Blue();
+          Console.Write("Введите имя файла > ");
+          Console.ResetColor();
+
+          string oldFileName = Console.ReadLine()!;
+
+          switch (oldFileName)
+          {
+            case "exit":
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Yellow();
+              Console.WriteLine("Выход...");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+          }
+
+          if (string.IsNullOrWhiteSpace(oldFileName))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Вы пропустили аргумент, введите имя файла");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+
+          Console.Clear();
+          Colors.Blue();
+          Console.Write("Введите новое имя для файла > ");
+          Console.ResetColor();
+
+          string newFileName = Console.ReadLine()!;
+
+          switch (newFileName)
+          {
+            case "exit":
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Yellow();
+              Console.WriteLine("Выход...");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+          }
+
+          if (string.IsNullOrWhiteSpace(newFileName))
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine("Вы пропустили аргумент, введите новое имя для файла!");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+
+          Console.Clear();
+
+          string oldFilePath = Path.Combine(CurrentFilePath, oldFileName);
+          string newFilePath = Path.Combine(CurrentFilePath, newFileName);
+
+          if (File.Exists(oldFilePath))
+          {
+            try
+            {
+              File.Move(oldFilePath, newFilePath);
+
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Green();
+              Console.WriteLine($"Файл успешно переименован в: '{newFileName}'");
+              Console.ResetColor();
+              Thread.Sleep(2000);
+              Console.Clear();
+              return;
+            }
+            catch (Exception ex)
+            {
+              Console.CursorVisible = false;
+              Console.Clear();
+              Colors.Red();
+              Console.WriteLine($"Ошибка при переименовании файла: '{ex.Message}'");
+              Console.ResetColor();
+              Console.Clear();
+              break;
+            }
+          }
+          else
+          {
+            Console.CursorVisible = false;
+            Console.Clear();
+            Colors.Red();
+            Console.WriteLine($"Файл с именеи: '{oldFileName} не существует.'");
+            Console.ResetColor();
+            Thread.Sleep(2000);
+            Console.Clear();
+            continue;
+          }
+        }
+      }
       //Even more code duplication. :D
       public void Addition()
       {
@@ -1423,12 +1656,14 @@ namespace Lime.core
           Colors.Yellow();
           Console.Write("Введите первое число > ");
           Console.ResetColor();
+
           int NumberOne = Convert.ToInt16(Console.ReadLine());
 
           Console.Clear();
           Colors.Yellow();
           Console.Write("Введите второе число > ");
           Console.ResetColor();
+
           int NumberTwo = Convert.ToInt16(Console.ReadLine());
 
           Console.Clear();
@@ -1460,12 +1695,14 @@ namespace Lime.core
           Colors.Yellow();
           Console.Write("Введите первое число > ");
           Console.ResetColor();
+
           int NumberOne = Convert.ToInt16(Console.ReadLine());
 
           Console.Clear();
           Colors.Yellow();
           Console.Write("Введите второе число > ");
           Console.ResetColor();
+
           int NumberTwo = Convert.ToInt16(Console.ReadLine());
 
           Console.Clear();
@@ -1497,12 +1734,14 @@ namespace Lime.core
           Colors.Yellow();
           Console.Write("Введите первое число > ");
           Console.ResetColor();
+
           int NumberOne = Convert.ToInt16(Console.ReadLine());
 
           Console.Clear();
           Colors.Yellow();
           Console.Write("Введите второе число > ");
           Console.ResetColor();
+
           int NumberTwo = Convert.ToInt16(Console.ReadLine());
 
           Console.Clear();
@@ -1534,12 +1773,14 @@ namespace Lime.core
           Colors.Yellow();
           Console.Write("Введите первое число > ");
           Console.ResetColor();
+
           int NumberOne = Convert.ToInt16(Console.ReadLine());
 
           Console.Clear();
           Colors.Yellow();
           Console.Write("Введите второе число > ");
           Console.ResetColor();
+
           int NumberTwo = Convert.ToInt16(Console.ReadLine());
 
           Console.Clear();

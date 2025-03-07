@@ -30,6 +30,8 @@ namespace Lime.core
       Console.WriteLine("mp [Имя файла], [Имя директории] - Перемещение файла в директорию.");
       Console.WriteLine("cpd [Имя директории], [Имя новой директории] - Копирование директории.");
       Console.WriteLine("cp [Имя файла], [Имя директории] - Копирование файла в директорию.");
+      Console.WriteLine("directory -r, --rename [Исходное имя директории] [Новое имя для директории] - Переименование директории.");
+      Console.WriteLine("file -r, --rename [Исходное имя файла] [Новое имя для файла] - Переименование файла.");
       //Lua scripts 
       Console.WriteLine("test - Тестовый скрипт...");
       //Other commands
