@@ -1647,6 +1647,33 @@ namespace Lime.core
           }
         }
       }
+      public void Ls()
+      {
+        string HomeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        string CurrentDirectoryPath = Path.Combine(HomeDirectory, "LimeOS", "main", "root", "home", "user");
+
+        if (!Directory.Exists(CurrentDirectoryPath))
+        {
+          Console.WriteLine($"Директория не найдена: '{CurrentDirectoryPath}'");
+          return;
+        }
+
+        string[] files = Directory.GetFiles(CurrentDirectoryPath);
+        string[] directories = Directory.GetDirectories(CurrentDirectoryPath);
+
+        foreach (var dir in directories)
+        {
+          Console.WriteLine($"\x1b[34m{Path.GetFileName(dir)}\x1b[0m");
+        }
+
+        foreach (var file in files)
+        {
+          Console.WriteLine(Path.GetFileName(file));
+        }
+      }
+      public void Cd()
+      {
+      }
       //Even more code duplication. :D
       public void Addition()
       {

@@ -101,6 +101,12 @@ namespace Lime.core
           case "file --rename":
             cmd.FileR();
             break;
+          case "ls":
+            cmd.Ls();
+            break;
+          case "Cd":
+            cmd.Cd();
+            break;
           //Lua Scripts.
           case "test": //Soon...
             cmd.Test();
@@ -160,10 +166,6 @@ namespace Lime.core
             }
             continue;
         }
-        /*
-        Create command - Rename file & directory.
-        Create command - ls, cd.
-        Create more...*/
       }
     }
   }
