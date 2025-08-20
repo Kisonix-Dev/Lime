@@ -3,6 +3,7 @@
 [![C#](https://img.shields.io/badge/-C%23-D9C6F0?style=for-the-badge&logo=c-sharp&logoColor=black&logoWidth=30)](https://docs.microsoft.com/en-us/dotnet/csharp/)
 [![.NET](https://img.shields.io/badge/-.NET-C9D9F2?style=for-the-badge&logo=dotnet&logoColor=black&logoWidth=30)](https://dotnet.microsoft.com/)
 [![Unix](https://img.shields.io/badge/-Unix-E3E8E2?style=for-the-badge&logo=linux&logoColor=black&logoWidth=30)](https://en.wikipedia.org/wiki/Unix)
+---
 
 <p>Lime OS operating system simulator. This program was created purely for fun and experiments. Nothing serious. Here you will see a lot of shit code, be careful!</p>
 
